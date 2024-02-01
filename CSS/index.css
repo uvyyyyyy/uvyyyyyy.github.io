@@ -13,7 +13,7 @@ body{
     }
     
     h1{
-        color: #f7bfbf;
+        color: #ffffff;
     }
     
     nav{
@@ -52,8 +52,8 @@ body{
     }
     
     a {
-        background-color: #BBBBBB;
-        color: #666666;
+        background-color: #ffffff;
+        color: #611b5c;
     }
     
     progress {
@@ -65,8 +65,8 @@ body{
     }
     
     progress::-webkit-progress-value {
-        background-color: #666666 !important;
+        background-color: f8ccf16 !important;
     } 
     progress::-moz-progress-bar {
-        background-color: #666666 !important;
+        background-color: f8ccf1 !important;
     }
