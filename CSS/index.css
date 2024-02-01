@@ -7,7 +7,7 @@ body{
     }
     
     header{
-        background: #ff87e7;
+        background: #611b5c;
         text-align: center;
         padding-bottom: 15px;
     }
@@ -28,7 +28,7 @@ body{
     
     section{
         display:inline-block;
-        width:30%;
+        width:22%;
         margin-right: 2%;
         float: right;
     }
@@ -50,7 +50,17 @@ body{
     img{
         width: 100px;
     }
-    
+    div {
+    background-color: lightblue;
+    width: 300px;
+    border: 25px solid white;
+    padding: 25px;
+    margin: 25px;
+}
+
+p {
+	border: 1px dashed black;
+}
     a {
     
         color: #000000;
