@@ -1,19 +1,19 @@
 body{
     direction:rtl;
-    background:#B6B6B3;
+    background:#f8ccf1;
     margin:5%;
     font-size: 150%;
     font-family: Arial, "Times New Roman", serif;
     }
     
     header{
-        background: #BBBBBB;
+        background: #ff87e7;
         text-align: center;
         padding-bottom: 15px;
     }
     
     h1{
-        color: #555555;
+        color: #f7bfbf;
     }
     
     nav{
@@ -22,7 +22,7 @@ body{
     }
     
     h2{
-        color: #666666;
+        color: #611b5c;
         background: #BBBBBB;
     }
     
