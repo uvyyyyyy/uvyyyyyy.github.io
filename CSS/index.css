@@ -23,7 +23,7 @@ body{
     
     h2{
         color: #611b5c;
-        background: #BBBBBB;
+        background: #ffffff;
     }
     
     section{
@@ -42,7 +42,7 @@ body{
     }
     
     footer{
-        background: #BBBBBB;
+        background: #ffffff;
         height:100px;
         clear: both;
     }
@@ -52,8 +52,8 @@ body{
     }
     
     a {
-        background-color: #ffffff;
-        color: #611b5c;
+    
+        color: #000000;
     }
     
     progress {
