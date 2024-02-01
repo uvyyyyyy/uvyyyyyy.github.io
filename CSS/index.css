@@ -5,6 +5,7 @@ body{
     font-size: 150%;
     font-family: Arial, "Times New Roman", serif;
     }
+
     
     header{
         background: #611b5c;
@@ -51,20 +52,20 @@ body{
         width: 100px;
     }
     div {
-    background-color: lightblue;
-    width: 300px;
-    border: 25px solid white;
-    padding: 25px;
-    margin: 25px;
+    background-color:lightpink;
+    width: 160px;
+    border: 15px solid purple;
+    padding: 15px;
+    margin: 15px;
 }
 
-p {
-	border: 1px dashed black;
-}
     a {
     
         color: #000000;
     }
+    a:hover {
+        color: #ff0000;
+     }
     
     progress {
         background: #ff0000;
