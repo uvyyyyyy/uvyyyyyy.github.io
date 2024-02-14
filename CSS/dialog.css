@@ -1,0 +1,86 @@
+div.player1 {
+	
+	width: 150px;
+    height: 50px;
+    margin: 5px;
+	background-color: rgb(216, 111, 111);
+    position: relative;
+	left:200px;
+	top: 0px;
+    animation-name: moveright;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;  
+	
+}
+
+@keyframes moveright {
+    0%   {left:0px;  }
+    100% {left:400px; }
+}
+
+
+div.player2 {
+	
+	width: 160px;
+    height: 50px;
+	margin: 5px;
+    background-color: rgb(174, 237, 181);
+    position: relative;
+	left:1300px;
+	top: 200px;
+    animation-name: moveleft;
+	animation-delay: 2s;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;  
+	
+}
+@keyframes moveleft {
+    0%   {left: 2000px; }
+    100% {left:700px; }
+}
+div.player3 {
+	
+	width: 150px;
+    height: 50px;
+    margin: 5px;
+	background-color: rgb(216, 111, 111);
+    position: relative;
+	left: -170px;
+	top: 0px;
+    animation-name: moveright;
+    animation-delay: 6s;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;  
+	
+}
+
+div.player4 {
+	
+	width: 160px;
+    height: 50px;
+	margin: 5px;
+    background-color: rgb(174, 237, 181);
+    position: relative;
+	left:1300px;
+	top: 200px;
+    animation-name: moveleft;
+	animation-delay: 8s;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;  
+	
+}
+.cat {
+    width: 50px;
+    height: 80px;
+    background-image: url('images/cat.png');
+    background-size: 500% 100%; /* Width of the sprite sheet times the number of frames */
+}
+
+.cat {
+    animation: play-sprite 1s steps(6) infinite; /* 5 frames in the sprite sheet */
+}
+
+@keyframes play-sprite {
+    from { background-position: 0% 0; }
+    to { background-position: 100% 0; }
+}
