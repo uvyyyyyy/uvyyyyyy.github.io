@@ -4,18 +4,19 @@ body {
 }
 
 .cat {
-    width: 100px;
-    height: 100px;
-    background: url('\images\cat.png') 0 0;
+    width: 50px;
+    height: 80px;
+    background: url('duke_spritesheet.png') 0 0;
     position: absolute;
     top: 60px; /* Initial top position */
     left: 70px; /* Initial left position */
     /*transform: translate(-50%, -50%);*/
     transition: left 4s, top 4s; /* Add transition for smooth movement */
-    animation: walkAnimation 1s steps(6) infinite;
+    animation: walkAnimation 1s steps(10) infinite;
+    z-index: 9;
 }
 
 @keyframes walkAnimation {
     from { background-position: 0; }
-    to { background-position: 500px; }
+    to { background-position: -500px; }
 }
