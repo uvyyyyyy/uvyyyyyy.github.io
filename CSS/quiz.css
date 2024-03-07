@@ -8,11 +8,11 @@ body {
     font-family: 'Rubik', sans-serif;
    
       
-      .answer:hover {
+    .answer {
         display: inline-block;
       }
       
-      .selected {
+    .answer :hover{
         background-color: #ebf92a;
         display: inline-block;
       }
