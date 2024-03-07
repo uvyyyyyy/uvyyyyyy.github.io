@@ -10,11 +10,6 @@
     <script src="JS/quiz.js"></script>
     
     </head>
-    <style>
-      input:focus {
-        background-color: yellow;
-      }
-      </style>
 <body onload="hideQuestions()"> 
     <header>
         <h1>בואו לגלות איזה דמות אתם מבובספוג !</h1>
@@ -31,11 +26,11 @@
       <div id="One">
         <h2> מה תרצו להיות שתהיו גדולים ?</h2>
         <ul>
-             <div id="Spongbob" class="answers" onclick="saveAnswerSponge()"> טבח </div>
+             <div id="Spongbob" class="Spongbob answer" onclick="saveAnswerSponge()"> טבח </div>
              <br>
-             <div id="Squid" class="answers" onclick="saveAnswerSquid()"> אמן מפורסם </div>
+             <div id="Squid" class="Squid answer" onclick="saveAnswerSquid()"> אמן מפורסם </div>
              <br>
-             <div id="Krab" class="answers" onclick="saveAnswerKrab()"> עשיר </div>
+             <div id="Krab" class="Krab answer" onclick="saveAnswerKrab()"> עשיר </div>
              <br>
         </ul>
        
@@ -44,11 +39,11 @@
       <div id="Two">
         <h2> מה אתם עושים בשעות הפנאי?</h2>
         <ul>
-          <div id="Squid" class="answers" onclick="saveAnswerSquid()"> מנגן ומצייר </div>
+          <div id="Squid" class="Squid answer" onclick="saveAnswerSquid()"> מנגן ומצייר </div>
           <br>
-          <div id="Krab" class="answers" onclick="saveAnswerKrab()"> סופר את הכסף שלי </div>
+          <div id="Krab" class="Krab answer" onclick="saveAnswerKrab()"> סופר את הכסף שלי </div>
           <br>
-          <div id="Spongbob" class="answers" onclick="saveAnswerSponge()"> צד מדוזות </div>
+          <div id="Spongbob" class="Spongbob answer" onclick="saveAnswerSponge()"> צד מדוזות </div>
           <br>
         </ul>
        
@@ -57,11 +52,11 @@
       <div id="Three">
         <h2> באיזה בית תרצו לגור ?</h2>
         <ul>
-          <div id="Spongbob" class="answers" onclick="saveAnswerSponge()"> בצורת אננס </div>
+          <div id="Spongbob" class="Spongbob answer" onclick="saveAnswerSponge()"> בצורת אננס </div>
           <br>
-          <div id="Squid" class="answers" onclick="saveAnswerSquid()"> בצורת הפרצוף שלי </div>
+          <div id="Squid" class="Squid answer" onclick="saveAnswerSquid()"> בצורת הפרצוף שלי </div>
           <br>
-          <div id="Krab" class="answers" onclick="saveAnswerKrab()"> בצורת עוגן </div>
+          <div id="Krab" class="Krab answer" onclick="saveAnswerKrab()"> בצורת עוגן </div>
           <br>
         </ul>
       
@@ -70,11 +65,11 @@
       <div id="Four">
         <h2> מה יתאר אתכם הכי טוב ?</h2>
         <ul>
-          <div id="Squid" class="answers" onclick="saveAnswerSquid()"> מרמור מתמשך </div>
+          <div id="Squid" class="Squid answer" onclick="saveAnswerSquid()"> מרמור מתמשך </div>
           <br>
-          <div id="Spongbob" class="answers" onclick="saveAnswerSponge()"> צחוק מתגלגל </div>
+          <div id="Spongbob" class="Spongbob answer" onclick="saveAnswerSponge()"> צחוק מתגלגל </div>
           <br>
-          <div id="Krab" class="answers" onclick="saveAnswerKrab()"> אני לא קמצן אני מחושב </div>
+          <div id="Krab" class="Krab answer" onclick="saveAnswerKrab()"> אני לא קמצן אני מחושב </div>
           <br>
         </ul>
      
@@ -83,17 +78,17 @@
       <div id="Five">
         <h2>  איזה סוג עובד אתם ?</h2>
         <ul>
-          <div id="Squid" class="answers" onclick="saveAnswerSquid()"> אני רוצה להתפטר </div>
+          <div id="Squid" class="Squid answer" onclick="saveAnswerSquid()"> אני רוצה להתפטר </div>
           <br>
-          <div id="Krab" class="answers" onclick="saveAnswerKrab()"> הכסף זו הסיבה היחידה שאני פה  </div>
+          <div id="Krab" class="Krab answer" onclick="saveAnswerKrab()"> הכסף זו הסיבה היחידה שאני פה  </div>
           <br>
-          <div id="Spongbob" class="answers" onclick="saveAnswerSponge()"> החייכן האנרגטי והשירותי </div>
+          <div id="Spongbob" class="Spongbob answer" onclick="saveAnswerSponge()"> החייכן האנרגטי והשירותי </div>
           <br>
         </ul>
       </div>
       <br>
       <button id="Next">הבא</button> <button id="Back">הקודם</button>
-      <button onclick="finalScore()"> סיים </button>
+      <div onclick="finalScore()"> סיים </div>
       
   </body>
 </html>
