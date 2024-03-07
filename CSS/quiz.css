@@ -8,10 +8,10 @@ body {
     font-family: 'Rubik', sans-serif;
 }
 
-.answers {
+.answer {
     display: inline-block;
 }
-.answers :hover {
+.answer:hover {
     background-color: yellow;
     display: inline-block;
 }
