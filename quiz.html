@@ -8,11 +8,7 @@
 		</title>
     <link rel="stylesheet" type="text/css" href="CSS/quiz.css"/>
     <script src="JS/quiz.js"></script>
-    <style>
-    body {
-      direction: rtl; 
-      }
-      </style>
+    
     </head>
 <body onload="hideQuestions()"> 
     <header>
@@ -30,11 +26,11 @@
       <div id="One">
         <h2> מה תרצו להיות שתהיו גדולים ?</h2>
         <ul>
-             <class id="Spongbob"> טבח </class>
+             <div id="Spongbob" class="Spongbob" onclick="saveAnswerSponge()"> טבח </div>
              <br>
-             <class id="Squid"> אמן מפורסם </class>
+             <div id="Squid" class="Squid" onclick="saveAnswerSquid()"> אמן מפורסם </div>
              <br>
-             <class id="Krab"> עשיר </class>
+             <div id="Krab" class="Krab" onclick="saveAnswerKrab()"> עשיר </div>
              <br>
         </ul>
        
@@ -43,11 +39,11 @@
       <div id="Two">
         <h2> מה אתם עושים בשעות הפנאי?</h2>
         <ul>
-             <class id="Squid"> מנגן ומצייר </class>
-             <br>
-             <class id="Krab"> סופר את הכסף שלי </class>
-             <br>
-             <class id="Spongbob"> צד מדוזות </class>
+          <div id="Squid" class="Squid" onclick="saveAnswerSquid()"> מנגן ומצייר </div>
+          <br>
+          <div id="Krab" class="Krab" onclick="saveAnswerKrab()"> סופר את הכסף שלי </div>
+          <br>
+             <div id="Spongbob" class="Spongbob" onclick="saveAnswerSponge()"> צד מדוזות </div>
              <br>
         </ul>
        
@@ -56,12 +52,12 @@
       <div id="Three">
         <h2> באיזה בית תרצו לגור ?</h2>
         <ul>
-             <class id="Spongbob"> בצורת אננס </class>
-             <br>
-             <class id="Squid"> בצורת הפרצוף שלי </class>
-             <br>
-             <class id="Krab"> בצורת עוגן   </class>
-             <br>
+          <div id="Spongbob" class="Spongbob" onclick="saveAnswerSponge()"> בצורת אננס </div>
+          <br>
+          <div id="Squid" class="Squid" onclick="saveAnswerSquid()"> בצורת הפרצוף שלי </div>
+          <br>
+          <div id="Krab" class="Krab" onclick="saveAnswerKrab()"> בצורת עוגן </div>
+          <br>
         </ul>
       
 
@@ -69,11 +65,11 @@
       <div id="Four">
         <h2> מה יתאר אתכם הכי טוב ?</h2>
         <ul>
-             <class id="Squid"> מרמור מתמשך  </class>
+          <div id="Squid" class="Squid" onclick="saveAnswerSquid()"> מרמור מתמשך </div>
+          <br>
+             <div id="Spongbob" class="Spongbob" onclick="saveAnswerSponge()"> צחוק מתגלגל </div>
              <br>
-             <class id="Spongbob"> צחוק מתגלגל </class>
-             <br>
-             <class id="Krab"> אני לא קמצן אני מחושב </class>
+             <div id="Krab" class="Krab" onclick="saveAnswerKrab()"> אני לא קמצן אני מחושב </div>
              <br>
         </ul>
      
@@ -82,21 +78,17 @@
       <div id="Five">
         <h2>  איזה סוג עובד אתם ?</h2>
         <ul>
-             <class id="Squid"> אני רוצה להתפטר </class>
-             <br>
-             <class id="Krab"> הכסף זו הסיבה היחידה שאני בא </class>
-             <br>
-             <class id="Spongbob"> החייכן האנרגטי השירותי </class>
+          <div id="Squid" class="Squid" onclick="saveAnswerSquid()"> אני רוצה להתפטר </div>
+          <br>
+          <div id="Krab" class="Krab" onclick="saveAnswerKrab()"> הכסף זו הסיבה היחידה שאני פה  </div>
+          <br>
+             <div id="Spongbob" class="Spongbob" onclick="saveAnswerSponge()"> החייכן האנרגטי והשירותי </div>
              <br>
         </ul>
       </div>
       <br>
       <button id="Next">הבא</button> <button id="Back">הקודם</button>
       <div onclick="finalScore"> סיים </div>
-      <div class="Krab" onclick="recordAnswerKrab"
-
-
-
-
-</body>
+      <div class="Krab" onclick="recordAnswerKrab"/div>
+  </body>
 </html>
