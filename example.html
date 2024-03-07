@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Questionnaire</title>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Questionnaire Title</h1>
+        <ul id="menu">
+            <li onclick="changePage(1)">Page 1</li>
+            <li onclick="changePage(2)">Page 2</li>
+            <li onclick="changePage(3)">Page 3</li>
+            <li onclick="changePage(4)">Page 4</li>
+            <li onclick="changePage(5)">Page 5</li>
+        </ul>
+    </div>
+
+    <div class="questionnaire">
+        <div class="question" id="page1">
+            <!-- Content for Page 1 -->
+        </div>
+        <div class="question" id="page2" style="display: none;">
+            <!-- Content for Page 2 -->
+        </div>
+        <div class="question" id="page3" style="display: none;">
+            <!-- Content for Page 3 -->
+        </div>
+        <div class="question" id="page4" style="display: none;">
+            <!-- Content for Page 4 -->
+        </div>
+        <div class="question" id="page5" style="display: none;">
+            <!-- Content for Page 5 -->
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button onclick="previousPage()">Previous</button>
+        <button onclick="nextPage()">Next</button>
+    </div>
+
+    <script src="JS/script.js"></script>
+</body>
+</html>
+
