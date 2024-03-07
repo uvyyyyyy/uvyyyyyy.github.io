@@ -65,4 +65,30 @@ function showJustFive() {
 	document.getElementById("Back").onclick = showJustFour;
 
 }
+function saveAnswerSponge() {
+	Spongbob+=1;
+	
+}
+function saveAnswerSquid() {
+	Sqiud+=1;
+	
+}
+function saveAnswerKrab() {
+	Krab+=1;
+	
+}
+
+function finalScore() {
+	if(Spongbob> Sqiud && Spongbob> Krab){
+		alert ("you are spongebob!");
+	}
+	if(Krab> Sqiud && Spongbob < Krab){
+		alert ("you are Krab!");
+	}
+	if(Sqiud> Spongbob && Sqiud > Krab){
+		alert ("you are Squid!");
+	}
+
+
+}
 
