@@ -6,3 +6,11 @@ body {
     margin-top: 15%;
     font-family: 'Rubik', sans-serif;
     }
+
+    a {
+    
+        color: #000000;
+    }
+    a:hover {
+        background-color: #fffc64;
+     }
