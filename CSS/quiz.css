@@ -6,15 +6,12 @@ body {
     text-align: center;
     margin-top: 15%;
     font-family: 'Rubik', sans-serif;
-   
-      
-    .answer {
-        display: inline-block;
-      }
-      
-    .answer :hover{
-        background-color: #ebf92a;
-    
-      }
-    
+}
+
+.answers {
+    display: inline-block;
+}
+.answers :hover {
+    background-color: yellow;
+    display: inline-block;
 }
