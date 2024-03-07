@@ -7,12 +7,19 @@ body {
     margin-top: 15%;
     font-family: 'Rubik', sans-serif;
     
-    }
-
-    div{
-    
-        color: #000000;
-    }
-    div:hover {
-        background-color: #fffc64;
-     }
+    .answers {
+        cursor: pointer;
+        padding: 10px;
+        margin: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      
+      .answer:hover {
+        background-color: #f0f0f0;
+      }
+      
+      .selected {
+        background-color: #aaffaa !important;
+      }
+}
