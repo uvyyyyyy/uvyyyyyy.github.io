@@ -88,7 +88,14 @@ function finalScore() {
 	if(Sqiud> Spongbob && Sqiud > Krab){
 		alert ("you are Squid!");
 	}
-
-
 }
+
+const answers = document.querySelectorAll('.answer');
+
+// Remove any existing 'chosen-answer' class from all answers
+answers.forEach(answer => answer.classList.remove('chosen-answer'));
+
+// Add 'chosen-answer' class to the chosen answer
+answers[chosenAnswerIndex].classList.add('chosen-answer');
+
 
