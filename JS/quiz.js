@@ -7,6 +7,14 @@ function hideQuestions() {
 	document.getElementById("Three").style.display = 'none';
     document.getElementById("Four").style.display = 'none';
 	document.getElementById("Five").style.display = 'none';
+	document.getElementById("plank").style.display = 'none';
+	document.getElementById("Five").style.display = 'none';
+	document.getElementById("spongwin").style.display = 'none';
+	document.getElementById("krabwin").style.display = 'none';
+	document.getElementById("squidwin").style.display = 'none';
+	document.getElementById("spongesquid").style.display = 'none';
+	document.getElementById("krabsquid").style.display = 'none';
+	document.getElementById("krabsponge").style.display = 'none';
 	document.getElementById("everyone").style.display = 'block';
 	document.getElementById("Next").onclick = showJustOne;
 }
@@ -90,15 +98,7 @@ function saveAnswerKrab() {
 }
 
 function finalScore() {
-	document.getElementById("plank").style.display = 'none';
-	document.getElementById("Five").style.display = 'none';
-	document.getElementById("spongwin").style.display = 'none';
-	document.getElementById("krabwin").style.display = 'none';
-	document.getElementById("squidwin").style.display = 'none';
-	document.getElementById("spongesquid").style.display = 'none';
-	document.getElementById("krabsquid").style.display = 'none';
-	document.getElementById("krabsponge").style.display = 'none';
-
+	
 	if(Spongbob> Sqiud && Spongbob> Krab){
 		document.getElementById("spongwin").style.display = 'block';
 	}
