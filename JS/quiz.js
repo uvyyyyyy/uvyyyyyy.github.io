@@ -7,6 +7,10 @@ function hideQuestions() {
 	document.getElementById("Three").style.display = 'none';
     document.getElementById("Four").style.display = 'none';
 	document.getElementById("Five").style.display = 'none';
+	document.getElementById("everyone").style.display = 'block';
+	document.getElementById("Next").onclick = showJustOne;
+}
+function hidePhotos() {
 	document.getElementById("plank").style.display = 'none';
 	document.getElementById("Five").style.display = 'none';
 	document.getElementById("spongwin").style.display = 'none';
@@ -15,8 +19,6 @@ function hideQuestions() {
 	document.getElementById("spongesquid").style.display = 'none';
 	document.getElementById("krabsquid").style.display = 'none';
 	document.getElementById("krabsponge").style.display = 'none';
-	document.getElementById("everyone").style.display = 'block';
-	document.getElementById("Next").onclick = showJustOne;
 }
 function showJustOne() {
 	document.getElementById("One").style.display = 'block';
@@ -96,6 +98,7 @@ function saveAnswerKrab() {
 	Krab+=1;
 	
 }
+
 
 function finalScore() {
 	
