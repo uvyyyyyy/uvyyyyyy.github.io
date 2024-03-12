@@ -7,7 +7,6 @@ function hideQuestions() {
 	document.getElementById("Three").style.display = 'none';
     document.getElementById("Four").style.display = 'none';
 	document.getElementById("Five").style.display = 'none';
-	document.getElementById("everyone").style.display = 'block';
 	document.getElementById("Next").onclick = showJustOne;
 }
 function hidePhotos() {
@@ -19,6 +18,7 @@ function hidePhotos() {
 	document.getElementById("spongesquid").style.display = 'none';
 	document.getElementById("krabsquid").style.display = 'none';
 	document.getElementById("krabsponge").style.display = 'none';
+
 }
 function showJustOne() {
 	document.getElementById("One").style.display = 'block';
