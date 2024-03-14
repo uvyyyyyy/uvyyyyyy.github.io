@@ -7,7 +7,6 @@ function hideQuestions() {
 	document.getElementById("Three").style.display = 'none';
     document.getElementById("Four").style.display = 'none';
 	document.getElementById("Five").style.display = 'none';
-	document.getElementById("Next").onclick = showJustOne;
 }
 function hidePhotos() {
 	document.getElementById("plank").style.display = 'none';
@@ -28,7 +27,6 @@ function showJustOne() {
 	document.getElementById("Five").style.display = 'none';
 	document.getElementById("everyone").style.display = 'none';
 	document.getElementById("krab").style.display = 'block';
-	document.getElementById("Next").onclick = showJustTwo;
 
 
 }
@@ -41,11 +39,9 @@ function showJustTwo() {
 	document.getElementById("Five").style.display = 'none';
 	document.getElementById("krab").style.display = 'none';
 	document.getElementById("spongy").style.display = 'block';
-	document.getElementById("Next").onclick = showJustThree;
-	document.getElementById("Back").onclick = showJustOne;
-
-
 }
+
+
 
 function showJustThree() {
 	document.getElementById("One").style.display = 'none';
@@ -55,8 +51,6 @@ function showJustThree() {
 	document.getElementById("Five").style.display = 'none';
 	document.getElementById("spongy").style.display = 'none';
 	document.getElementById("patrik").style.display = 'block';
-	document.getElementById("Next").onclick = showJustFour;
-	document.getElementById("Back").onclick = showJustTwo;
 
 
 }
@@ -69,8 +63,6 @@ function showJustFour() {
 	document.getElementById("Five").style.display = 'none';
 	document.getElementById("patrik").style.display = 'none';
 	document.getElementById("squidy").style.display = 'block';
-	document.getElementById("Next").onclick = showJustFive;
-	document.getElementById("Back").onclick = showJustThree;
 
 
 }
@@ -83,7 +75,6 @@ function showJustFive() {
 	document.getElementById("Five").style.display = 'block';
 	document.getElementById("squidy").style.display = 'none';
 	document.getElementById("plank").style.display = 'block';
-	document.getElementById("Back").onclick = showJustFour;
 
 }
 function saveAnswerSponge() {

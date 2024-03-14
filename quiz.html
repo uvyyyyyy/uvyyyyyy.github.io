@@ -14,13 +14,16 @@
     <header>
         <h1>בואו לגלות איזה דמות אתם מבובספוג !</h1>
           </header>
-
+         
           <span onclick="showJustOne()"> שאלה 1 </span>
           <span onclick="showJustTwo()"> שאלה 2 </span>
           <span onclick="showJustThree()"> שאלה 3 </span>
           <span onclick="showJustFour()"> שאלה 4 </span>
           <span onclick="showJustFive()"> שאלה 5 </span>
           <br>
+          <button id="Start" onclick="showJustOne()">התחל שאלון </button> 
+       
+
 
 
      
@@ -35,6 +38,7 @@
              <br>
           <img src = "images/krab.gif" alt = "krab" style="width:200px;">
           <br>
+          <button id="Next" onclick="showJustTwo()">הבא</button> 
         </ul>
        
 
@@ -50,6 +54,8 @@
           <br>
           <img src = "images/sponge.gif" alt = "spongy" style="width:200px;">
           <br>
+          <button id="Next" onclick="showJustThree()">הבא</button> <button id="Back" onclick="showJustOne()">הקודם</button>
+
         </ul>
        
 
@@ -65,6 +71,8 @@
           <br>
           <img src = "images/patrik.gif" alt = "patrik" style="width:200px;">
           <br>
+          <button id="Next" onclick="showJustFour()">הבא</button> <button id="Back" onclick="showJustTwo()">הקודם</button>
+
         </ul>
       
 
@@ -80,6 +88,8 @@
           <br>
           <img src = "images/squid.gif" alt="squidy" style="width:200px;">
           <br>
+          <button id="Next" onclick="showJustFive()">הבא</button> <button id="Back" onclick="showJustThree()">הקודם</button>
+
         </ul>
      
 
@@ -95,13 +105,15 @@
           <br>
           <img src = "images/planktone.gif" alt="plank" style="width:200px;">
           <br>
+          <button id="Back" onclick="showJustFour()">הקודם</button> <button onclick="finalScore()"> סיים </button>
+
+
         </ul>
+
       </div>
       <br>
-      <button id="Next">הבא</button> <button id="Back">הקודם</button>
-      <br>
-      <button onclick="finalScore()"> סיים </button>
-      <br>
+      
+   
   
   </body>
 </html>
