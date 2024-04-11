@@ -101,15 +101,15 @@ function finalScore() {
 	
 	if(Spongbob> Sqiud && Spongbob> Krab){
 		document.getElementById("Ifsponge").style.display = 'block';
-	} elseif(Krab> Sqiud &&  Krab > Spongbob){
+	} elseif(Krab> Sqiud &&  Krab > Spongbob); {
 		document.getElementById("Ifkrab").style.display = 'block';
-	} elseif(Sqiud> Spongbob && Sqiud > Krab){
+	} elseif(Sqiud> Spongbob && Sqiud > Krab); {
 		document.getElementById("Ifsquid").style.display = 'block';
-	} elseif(Sqiud == Spongbob ){
+	} elseif(Sqiud == Spongbob ); {
 		document.getElementById("spongesquid").style.display = 'block';
-	} elseif(Sqiud == Krab ){
+	} elseif(Sqiud == Krab ); {
 		document.getElementById("krabsquid").style.display = 'block';
-	} elseif(Spongbob == Krab ){
+	} elseif(Spongbob == Krab ); {
 		document.getElementById("krabsponge").style.display = 'block';
 	}
 
