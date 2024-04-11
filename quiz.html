@@ -10,7 +10,7 @@
     <script src="JS/quizz.js"></script>
 
     </head>
-<body onload="hideQuestions(); hidePhotos();"> 
+<body onload="hideQuestions(); hidePhotos(); hideResult();"> 
     <header>
         <h1>בואו לגלות איזה דמות אתם מבובספוג !</h1>
           </header>
@@ -106,13 +106,32 @@
           <img src = "images/planktone.gif" alt="plank" style="width:200px;">
           <br>
           <button id="Back" onclick="showJustFour()">הקודם</button> <button onclick="finalScore()"> סיים </button>
-
-
         </ul>
-
       </div>
       <br>
       
+      <div id="Ifsponge">
+        <h2>  מזל טוב יצאת בובספוג !!! </h2>
+        <ul>
+          <img src = "images/spongwin.gif" alt="plank" style="width:200px;">
+          <h2>אתם חייכנים, חיוביים, ומלאי אנרגיה. לרוב אתם עושים הכל באהבה ואף פעם לא חשים עצב !  </h2>
+        </ul>
+      </div>
+      <div id="Ifsquid">
+        <h2>  אוי ואבוי... יצא סקווידוויד </h2>
+        <ul>
+          <img src = "images/squidwin.gif" alt="plank" style="width:200px;">
+          <h2> אתם בהחלט מבוגרים, ממורמרים ופסימיים לחיים. כנראה שקול בוקר אתם מקללים ושואלים למה קמתם </h2>
+        </ul>
+      </div>
+      <div id="Ifkrab">
+        <h2>  איזה חמדנים, יצא לכם מר קראב !! </h2>
+        <ul>
+          <img src = "images/krabwin.gif" alt="plank" style="width:200px;">
+          <h2>  תראו מה זה ... רק כסף מעניין אתכם. כנראה שכל יציאה איתכם היא כאב ראש של חישובים </h2>
+        </ul>
+      </div>
+
    
   
   </body>

@@ -1,6 +1,15 @@
 var Spongbob = 0;
 var Sqiud = 0;
 var Krab = 0;
+
+
+
+function hideResult() {
+	document.getElementById("Ifsponge").style.display = 'none';
+	document.getElementById("Ifsquid").style.display = 'none';
+	document.getElementById("Ifkrab").style.display = 'none';
+}
+
 function hideQuestions() {
 	document.getElementById("One").style.display = 'none';
 	document.getElementById("Two").style.display = 'none';
@@ -79,36 +88,42 @@ function showJustFive() {
 }
 function saveAnswerSponge() {
 	Spongbob+=1;
-	
+	console.log ("Spongbob" + Spongebob);
 }
 function saveAnswerSquid() {
 	Sqiud+=1;
-	
+	console.log ("Sqiud" + Sqiud);
 }
 function saveAnswerKrab() {
 	Krab+=1;
-	
+	console.log ("Krab" + Krab);
 }
 
 
 function finalScore() {
 	
 	if(Spongbob> Sqiud && Spongbob> Krab){
-		document.getElementById("spongwin").style.display = 'block';
+		console.log("you are Spongbob");
+		document.getElementById("Ifsponge").style.display = 'block';
 	}
 	if(Krab> Sqiud &&  Krab > Spongbob){
-		document.getElementById("krabwin").style.display = 'block';
+		console.log("you are Krab");
+		document.getElementById("Ifkrab").style.display = 'block';
 	}
 	if(Sqiud> Spongbob && Sqiud > Krab){
-		document.getElementById("squidwin").style.display = 'block';
+		console.log("you are Sqiud");
+		document.getElementById("Ifsquid").style.display = 'block';
 	}
 	if(Sqiud == Spongbob ){
+		console.log("oh wow! you are both squid and sponge");
 		document.getElementById("spongesquid").style.display = 'block';
 	}
 	if(Sqiud == Krab ){
+		console.log("oh wow! you are both squid and krab");
 		document.getElementById("krabsquid").style.display = 'block';
 	}
 	if(Spongbob == Krab ){
+		console.log("oh wow! you are both krab and squid");
 		document.getElementById("krabsponge").style.display = 'block';
 	}
 
