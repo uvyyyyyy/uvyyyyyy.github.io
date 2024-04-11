@@ -88,37 +88,28 @@ function showJustFive() {
 }
 function saveAnswerSponge() {
 	Spongbob+=1;
-	console.log ("Spongbob" + Spongebob);
 }
 function saveAnswerSquid() {
 	Sqiud+=1;
-	console.log ("Sqiud" + Sqiud);
 }
 function saveAnswerKrab() {
 	Krab+=1;
-	console.log ("Krab" + Krab);
 }
 
 
 function finalScore() {
 	
 	if(Spongbob> Sqiud && Spongbob> Krab){
-		console.log("you are Spongbob");
 		document.getElementById("Ifsponge").style.display = 'block';
 	} elseif(Krab> Sqiud &&  Krab > Spongbob){
-		console.log("you are Krab");
 		document.getElementById("Ifkrab").style.display = 'block';
 	} elseif(Sqiud> Spongbob && Sqiud > Krab){
-		console.log("you are Sqiud");
 		document.getElementById("Ifsquid").style.display = 'block';
 	} elseif(Sqiud == Spongbob ){
-		console.log("oh wow! you are both squid and sponge");
 		document.getElementById("spongesquid").style.display = 'block';
 	} elseif(Sqiud == Krab ){
-		console.log("oh wow! you are both squid and krab");
 		document.getElementById("krabsquid").style.display = 'block';
 	} elseif(Spongbob == Krab ){
-		console.log("oh wow! you are both krab and squid");
 		document.getElementById("krabsponge").style.display = 'block';
 	}
 
