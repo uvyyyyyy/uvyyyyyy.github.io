@@ -105,24 +105,19 @@ function finalScore() {
 	if(Spongbob> Sqiud && Spongbob> Krab){
 		console.log("you are Spongbob");
 		document.getElementById("Ifsponge").style.display = 'block';
-	}
-	if(Krab> Sqiud &&  Krab > Spongbob){
+	} elseif(Krab> Sqiud &&  Krab > Spongbob){
 		console.log("you are Krab");
 		document.getElementById("Ifkrab").style.display = 'block';
-	}
-	if(Sqiud> Spongbob && Sqiud > Krab){
+	} elseif(Sqiud> Spongbob && Sqiud > Krab){
 		console.log("you are Sqiud");
 		document.getElementById("Ifsquid").style.display = 'block';
-	}
-	if(Sqiud == Spongbob ){
+	} elseif(Sqiud == Spongbob ){
 		console.log("oh wow! you are both squid and sponge");
 		document.getElementById("spongesquid").style.display = 'block';
-	}
-	if(Sqiud == Krab ){
+	} elseif(Sqiud == Krab ){
 		console.log("oh wow! you are both squid and krab");
 		document.getElementById("krabsquid").style.display = 'block';
-	}
-	if(Spongbob == Krab ){
+	} elseif(Spongbob == Krab ){
 		console.log("oh wow! you are both krab and squid");
 		document.getElementById("krabsponge").style.display = 'block';
 	}
