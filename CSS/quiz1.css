@@ -1,0 +1,52 @@
+body {
+    direction: rtl;
+    background-image: url(/images/sponge.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: center;
+    margin-top: 10vh; /* Consistent top margin relative to the viewport height */
+    font-family: 'Rubik', sans-serif;
+    color: #333; /* Ensure text is readable */
+}
+
+.answer {
+    display: inline-block;
+    padding: 10px 20px; /* Adds space inside the answer blocks */
+    margin: 5px; /* Adds space between answer blocks */
+    background-color: #f8f9fa; /* Light background for answers */
+    border-radius: 8px; /* Rounded corners for answer blocks */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transitions for hover effects */
+}
+
+.answer:hover {
+    background-color: yellow;
+    transform: scale(1.05); /* Slightly enlarge on hover for emphasis */
+}
+
+/* Ensure links are visible and aesthetically pleasing */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
