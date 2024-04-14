@@ -96,23 +96,20 @@ function saveAnswerKrab() {
 	Krab+=1;
 }
 
-
 function finalScore() {
-	
-	if(Spongbob> Sqiud && Spongbob> Krab){
-		document.getElementById("Ifsponge").style.display = 'block';
-	} elseif(Krab> Sqiud &&  Krab > Spongbob); {
-		document.getElementById("Ifkrab").style.display = 'block';
-	} elseif(Sqiud> Spongbob && Sqiud > Krab); {
-		document.getElementById("Ifsquid").style.display = 'block';
-	} elseif(Sqiud == Spongbob ); {
-		document.getElementById("spongesquid").style.display = 'block';
-	} elseif(Sqiud == Krab ); {
-		document.getElementById("krabsquid").style.display = 'block';
-	} elseif(Spongbob == Krab ); {
-		document.getElementById("krabsponge").style.display = 'block';
-	}
-
+    if (Spongbob > Sqiud && Spongbob > Krab) {
+        document.getElementById("Ifsponge").style.display = 'block';
+    } else if (Krab > Sqiud && Krab > Spongbob) {
+        document.getElementById("Ifkrab").style.display = 'block';
+    } else if (Sqiud > Spongbob && Sqiud > Krab) {
+        document.getElementById("Ifsquid").style.display = 'block';
+    } else if (Sqiud == Spongbob) {
+        document.getElementById("spongesquid").style.display = 'block';
+    } else if (Sqiud == Krab) {
+        document.getElementById("krabsquid").style.display = 'block';
+    } else if (Spongbob == Krab) {
+        document.getElementById("krabsponge").style.display = 'block';
+    }
 }
 
 
