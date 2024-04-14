@@ -22,9 +22,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function saveAnswer(character) {
-        scores[character] += 1;
+    function saveAnswer(Spongebob) {
+        scores[Spongebob] += 1;
     }
+    function saveAnswer(Squidward) {
+        scores[Squidward] += 1;
+    }
+    function saveAnswer(MrKrab) {
+        scores[MrKrab] += 1;
+    }
+    
 
     function finalScore() {
         hideAllQuestions();
