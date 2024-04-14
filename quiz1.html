@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <title>The Big Quiz</title>
+    <link rel="stylesheet" type="text/css" href="CSS/quiz1.css"/>
+    <script src="JS/quiz1.js" defer></script>
+</head>
+<body onload="hideQuestions(); hidePhotos(); hideResult();"> 
+    <header>
+        <h1>בואו לגלות איזה דמות אתם מבובספוג!</h1>
+    </header>
+    <nav>
+        <button onclick="showJustOne()">שאלה 1</button>
+        <button onclick="showJustTwo()">שאלה 2</button>
+        <button onclick="showJustThree()">שאלה 3</button>
+        <button onclick="showJustFour()">שאלה 4</button>
+        <button onclick="showJustFive()">שאלה 5</button>
+    </nav>
+    <button id="Start" onclick="showJustOne()">התחל שאלון</button> 
+
+    <div id="One" class="question">
+        <h2>מה תרצו להיות שתהיו גדולים?</h2>
+        <div class="answer Spongbob" onclick="saveAnswerSponge()">טבח</div>
+        <div class="answer Squid" onclick="saveAnswerSquid()">אמן מפורסם</div>
+        <div class="answer Krab" onclick="saveAnswerKrab()">עשיר</div>
+        <img src="images/krab.gif" alt="Krabs cooking" style="width:200px;">
+        <button onclick="showJustTwo()">הבא</button>
+    </div>
+
+    <div id="Two" class="question">
+        <h2>מה אתם עושים בשעות הפנאי?</h2>
+        <div class="answer Squid" onclick="saveAnswerSquid()">מנגן ומצייר</div>
+        <div class="answer Krab" onclick="saveAnswerKrab()">סופר את הכסף שלי</div>
+        <div class="answer Spongbob" onclick="saveAnswerSponge()">צד מדוזות</div>
+        <img src="images/sponge.gif" alt="SpongeBob catching jellyfish" style="width:200px;">
+        <button onclick="showJustThree()">הבא</button>
+        <button onclick="showJustOne()">הקודם</button>
+    </div>
+
+    <div id="Three" class="question">
+        <h2>באיזה בית תרצו לגור?</h2>
+        <div class="answer Spongbob" onclick="saveAnswerSponge()">בצורת אננס</div>
+        <div class="answer Squid" onclick="saveAnswerSquid()">בצורת הפרצוף שלי</div>
+        <div class="answer Krab" onclick="saveAnswerKrab()">בצורת עוגן</div>
+        <img src="images/patrik.gif" alt="Patrick in front of his rock house" style="width:200px;">
+        <button onclick="showJustFour()">הבא</button>
+        <button onclick="showJustTwo()">הקודם</button>
+    </div>
+
+    <div id="Four" class="question">
+        <h2>מה יתאר אתכם הכי טוב?</h2>
+        <div class="answer Squid" onclick="saveAnswerSquid()">מרמור מתמשך</div>
+        <div class="answer Spongbob" onclick="saveAnswerSponge()">צחוק מתגלגל</div>
+        <div class="answer Krab" onclick="saveAnswerKrab()">אני לא קמצן אני מחושב</div>
+        <img src="images/squid.gif" alt="Squidward frowning" style="width:200px;">
+        <button onclick="showJustFive()">הבא</button>
+        <button onclick="showJustThree()">הקודם</button>
+    </div>
+
+    <div id="Five" class="question">
+        <h2>איזה סוג עובד אתם?</h2>
+        <div class="answer Squid" onclick="saveAnswerSquid()">אני רוצה להתפטר</div>
+        <div class="answer Krab" onclick="saveAnswerKrab()">הכסף זו הסיבה היחידה שאני פה</div>
+        <div class="answer Spongbob" onclick="saveAnswerSponge()">החייכן האנרגטי והשירותי</div>
+        <img src="images/planktone.gif" alt="Plankton scheming" style="width:200px;">
+        <button onclick="showJustFour()">הקודם</button>
+        <button onclick="finalScore()">סיים</button>
+    </div>
+
+    <!-- Result Sections -->
+    <div id="result"></div>
+
+    <!-- Utility Scripts -->
+    <script>
+        // Example of scripting included for demonstration
+        function showJustOne() {
+            // Logic to display question one and hide others
+        }
+        // More function implementations
+    </script>
+
+</body>
+</html>
