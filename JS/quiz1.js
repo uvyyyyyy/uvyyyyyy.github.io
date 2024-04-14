@@ -32,11 +32,11 @@ document.addEventListener('DOMContentLoaded', function() {
         let result = "";
 
         if (maxScore === scores.Spongebob) {
-            result = "אתה ספוגבוב!";
+            result = "אתה בובספוג!";
         } else if (maxScore === scores.Squidward) {
-            result = "אתה דיויד!";
+            result = "אתה סקווידוויד!";
         } else if (maxScore === scores.MrKrab) {
-            result = "אתה מר קראבס!";
+            result = "אתה מר קראב!";
         }
 
         resultDiv.innerHTML = `<h2>${result}</h2>`;
