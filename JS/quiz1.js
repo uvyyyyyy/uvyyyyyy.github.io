@@ -80,6 +80,8 @@ function showQuestion5 () {
     document.getElementById("finalSponge").style.display = 'none';
     document.getElementById("finalSquid").style.display = 'none';
     document.getElementById("finalKrab").style.display = 'none';
+    document.getElementById("submit").style.display = 'block';
+
     document.getElementById("before").onclick = showQuestion4;
 }
 
