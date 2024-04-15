@@ -38,11 +38,11 @@ document.addEventListener('DOMContentLoaded', function() {
         let maxScore = Math.max(scores.Spongebob, scores.Squidward, scores.MrKrab);
         let result = "";
 
-        if (maxScore === scores.Spongebob) {
+        if (maxScore == scores.Spongebob) {
             result = "אתה בובספוג!";
-        } else if (maxScore === scores.Squidward) {
+        } else if (maxScore == scores.Squidward) {
             result = "אתה סקווידוויד!";
-        } else if (maxScore === scores.MrKrab) {
+        } else if (maxScore == scores.MrKrab) {
             result = "אתה מר קראב!";
         }
 
