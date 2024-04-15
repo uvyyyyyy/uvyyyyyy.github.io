@@ -12,6 +12,7 @@ function hideQuestion () {
     document.getElementById("fourth").style.display = 'none';
     document.getElementById("fifth").style.display = 'none';
     document.getElementById("everyone").style.display = 'block';
+    document.getElementById("submit").style.display = 'none';
     for (var i = 0; i < results.length; i++) {
         results[i].style.display = 'none';
     } 
