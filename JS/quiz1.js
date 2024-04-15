@@ -82,37 +82,37 @@ function showQuestion5 () {
     document.getElementById("before").onclick = showQuestion4;
 }
 
-function saveAnswerSpongebob () {
-    Spongebob+=1;
-    console.log ("Spongebob" + Spongebob);
+function saveAnswerSponge () {
+    sponge+=1;
+    console.log ("sponge" + sponge);
 }
-function saveAnswerSquidward () {
-    Squidward+=1;
-    console.log ("Squidward" + Squidward);
+function saveAnswerSquid () {
+    squid+=1;
+    console.log ("squid" + squid);
 }
-function saveAnswerMrKrab () {
-    MrKrab+=1;
-    console.log ("MrKrab" + MrKrab);
+function saveAnswerKrab () {
+    krab+=1;
+    console.log ("krab" + krab);
 }
 
 function resultQuestion () {
-    if (Spongebob > Squidward && Spongebob > MrKrab) {
+    if (sponge > squid && sponge > krab) {
         console.log("you are Spongebob");
         document.getElementById("finalSponge").style.display = 'block';
-    } else if (Squidward > Spongebob && Squidward > MrKrab) {
-        console.log("you are Squidward");
+    } else if (squid > sponge && squid > krab) {
+        console.log("you are squid");
         document.getElementById("finalSquid").style.display = 'block';
-    } else if (MrKrab > Spongebob && MrKrab > Squidward) {
-        console.log("you are MrKrab");
+    } else if (krab > sponge && krab > squid) {
+        console.log("you are krab");
         document.getElementById("finalKrab").style.display = 'block';
-    } else if (Spongebob == Squidward && Spongebob != MrKrab) {
-        console.log("you are Spongebob and Squidward");
+    } else if (sponge == squid && sponge != krab) {
+        console.log("you are sponge and Squidward");
         document.getElementById("finalSponsquid").style.display = 'block';
-    } else if (Spongebob == MrKrab && Spongebob != Squidward) {
-        console.log("you are Spongebob and MrKrab");
+    } else if (sponge == krab && sponge != squid) {
+        console.log("you are sponge and krab");
         document.getElementById("finalKrabspon").style.display = 'block';
-    } else if (Squidward == MrKrab && Squidward != Spongebob) {
-        console.log("you are Squidward and MrKrab");
+    } else if (squid == krab && squid != sponge) {
+        console.log("you are Squidward and krab");
         document.getElementById("finalKrabsquid").style.display = 'block';
     }
     
