@@ -1,97 +1,159 @@
+
 <!DOCTYPE html>
-<html lang="he">
+<html dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>The Big Quiz</title>
+    <dir="rtl">
+    <title>"Freinds" Question</title>
     <link rel="stylesheet" type="text/css" href="CSS/quiz1.css"/>
-    <script src="JS/quiz1.js" defer></script>
+    <script src="JS/quiz1.js"></script>
 </head>
-<body onload="hideQuestions(); hidePhotos(); hideResult();"> 
-    <header>
-        <h1>בואו לגלות איזה דמות אתם מבובספוג!</h1>
-    </header>
-    <nav>
-        <button onclick="showJustOne()">שאלה 1</button>
-        <button onclick="showJustTwo()">שאלה 2</button>
-        <button onclick="showJustThree()">שאלה 3</button>
-        <button onclick="showJustFour()">שאלה 4</button>
-        <button onclick="showJustFive()">שאלה 5</button>
-    </nav>
-    <button id="Start" onclick="showJustOne()">התחל שאלון</button> 
+<body onload="hideQuestion () ; ">
 
-    <div id="One" class="question">
-        <h2>מה תרצו להיות שתהיו גדולים?</h2>
-        <div class="answer Spongbob" onclick="saveAnswerSponge()">טבח</div>
-        <br>
-        <div class="answer Squid" onclick="saveAnswerSquid()">אמן מפורסם</div>
-        <br>
-        <div class="answer Krab" onclick="saveAnswerKrab()">עשיר</div>
-        <br>
-        <img src="images/krab.gif" alt="Krabs cooking" style="width:200px;">
-        <br>
-        <button onclick="showJustTwo()">הבא</button>
+<h1 onclick="hideQuestion () ; " id="title"> בואו לגלות איזה דמות אתם מבובספוג !</h1>
+<section class="menu">
+    <div onclick="showQuestion1 () ; "> שאלה ראשונה </div>
+    <div onclick="showQuestion2 (); "> שאלה שניה </div> 
+    <div onclick="showQuestion3 (); "> שאלה שלישית </div>
+    <div onclick="showQuestion4 (); "> שאלה רביעית </div>
+    <div onclick="showQuestion5 (); "> שאלה חמישית </div>
+    <br>
+    <div id="everyone">
+        <img src = "imgs/everyone.gif" alt = "girls" style="width:200px;">
+    </div>
+</section>
+
+<section id="first" class="question">
+    <h2>מה תרצו להיות שתהיו גדולים?</h2>
+    <div id="sponge" class="answer Spongbob" onclick="saveAnswerSponge(); ">טבח</div>
+    <br>
+    <div id="squid" class="answer Squid" onclick="saveAnswerSquid(); ">אמן מפורסם</div>
+    <br>
+    <div id="krab" class="answer Krab" onclick="saveAnswerKrab(); ">עשיר</div>
+    <br>
+    <div id="Krabs">
+    <img src="images/krab.gif" alt="Krabs" style="width:200px;">
     </div>
 
-    <div id="Two" class="question">
-        <h2>מה אתם עושים בשעות הפנאי?</h2>
-        <div class="answer Squid" onclick="saveAnswerSquid()">מנגן ומצייר</div>
-        <br>
-        <div class="answer Krab" onclick="saveAnswerKrab()">סופר את הכסף שלי</div>
-        <br>
-        <div class="answer Spongbob" onclick="saveAnswerSponge()">צד מדוזות</div>
-        <br>
-        <img src="images/sponge.gif" alt="SpongeBob catching jellyfish" style="width:200px;">
-        <br>
-        <button onclick="showJustThree()">הבא</button>
-        <button onclick="showJustOne()">הקודם</button>
+   
+</section>
+<section id="second" class="question">
+    <h2>מה אתם עושים בשעות הפנאי?</h2>
+    <div id="squid" class="answer Squid" onclick="saveAnswerSquid(); ">מנגן ומצייר </div>
+    <br>
+    <div id="krab" class="answer Krab" onclick="saveAnswerKrab(); ">סופר את הכסף שלי </div>
+    <br>
+    <div id="sponge" class="answer Spongbob" onclick="saveAnswerSponge(); ">צד מדוזות </div>
+    <br>
+    <div id="spongy">
+    <img src="images/sponge.gif" alt="spongy" style="width:200px;">
     </div>
+</section>
 
-    <div id="Three" class="question">
-        <h2>באיזה בית תרצו לגור?</h2>
-        <div class="answer Spongbob" onclick="saveAnswerSponge()">בצורת אננס</div>
-        <br>
-        <div class="answer Squid" onclick="saveAnswerSquid()">בצורת הפרצוף שלי</div>
-        <br>
-        <div class="answer Krab" onclick="saveAnswerKrab()">בצורת עוגן</div>
-        <br>
-        <img src="images/patrik.gif" alt="Patrick in front of his rock house" style="width:200px;">
-        <br>
-        <button onclick="showJustFour()">הבא</button>
-        <button onclick="showJustTwo()">הקודם</button>
+<section id="third" class="question">
+    <h2>באיזה בית תרצו לגור?</h2>
+    <div id="sponge" class="answer Spongbob" onclick="saveAnswerSponge(); ">בצורת אננס </div>
+    <br>
+    <div id="squid" class="answer Squid" onclick="saveAnswerSquid(); ">בצורת הפרצוף שלי   </div>
+    <br>
+    <div id="krab" class="answer Krab" onclick="saveAnswerKrab(); ">בצורת עוגן </div>
+    <br>
+    <div id="patriki">
+    <img src="images/patrik.gif" alt="patriki" style="width:200px;">
     </div>
+</section>
 
-    <div id="Four" class="question">
-        <h2>מה יתאר אתכם הכי טוב?</h2>
-        <div class="answer Squid" onclick="saveAnswerSquid()">מרמור מתמשך</div>
-        <br>
-        <div class="answer Spongbob" onclick="saveAnswerSponge()">צחוק מתגלגל</div>
-        <br>
-        <div class="answer Krab" onclick="saveAnswerKrab()">אני לא קמצן אני מחושב</div>
-        <br>
-        <img src="images/squid.gif" alt="Squidward frowning" style="width:200px;">
-        <br>
-        <button onclick="showJustFive()">הבא</button>
-        <button onclick="showJustThree()">הקודם</button>
+<section id="fourth" class="question">
+    <h2>מה יתאר אתכם הכי טוב?</h2>
+    <div id="squid" class="answer Squid" onclick="saveAnswerSquid(); ">  מרמור מתמשך   </div>
+    <br>
+    <div id="sponge" class="answer Spongbob" onclick="saveAnswerSponge(); "> צחוק מתגלגל </div>
+    <br>
+    <div id="krab" class="answer Krab" onclick="saveAnswerKrab(); "> אני לא קמצן אני מחושב </div>
+    <br>
+    <div id="squidi">
+    <img src="images/squid.gif" alt="squidi" style="width:200px;">
     </div>
+    <br>
+</section>
 
-    <div id="Five" class="question">
-        <h2>איזה סוג עובד אתם?</h2>
-        <div class="answer Squid" onclick="saveAnswerSquid()">אני רוצה להתפטר</div>
-        <br>
-        <div class="answer Krab" onclick="saveAnswerKrab()">הכסף זו הסיבה היחידה שאני פה</div>
-        <br>
-        <div class="answer Spongbob" onclick="saveAnswerSponge()">החייכן האנרגטי והשירותי</div>
-        <br>
-        <img src="images/planktone.gif" alt="Plankton scheming" style="width:200px;">
-        <br>
-        <button onclick="showJustFour()">הקודם</button>
-        <button onclick="finalScore()">סיים</button>
+<section id="fifth" class="question">
+    <h2>איזה סוג עובד אתם?</h2>
+    <div id="squid" class="answer Squid" onclick="saveAnswerSquid(); ">  אני רוצה להתפטר  </div>
+    <br>
+    <div id="krab" class="answer Krab" onclick="saveAnswerKrab(); "> הכסף זו הסיבה היחידה שאני פה     </div>
+    <br>
+    <div id="sponge" class="answer Spongbob" onclick="saveAnswerSponge(); "> החייכן האנרגטי והשירותי  </div>
+    <br>
+    <div id="planky">
+    <img src="images/planktone.gif" alt="planky" style="width:200px;">
     </div>
+    <br>
+</section>
 
-    <!-- Result Sections -->
-    <div id="result"></div>
 
+<section id="finalSponge" class="result">
+    <h1>יצאת בובספוג !</h1>
+    <p> אין ספק שאת הצחוק שלך שומעים ממרחקים
+    </p>
+    <br>
+    <div id="picSponge">
+        <img src ="imgs/spongwin.gif" alt="picSponge" style="width: 200px;">
+    </div>
+</section>
 
+<section id="finalSquid" class="result">
+    <h1>יצאת  סקווידוויד!</h1>
+    <p> מומלץ ללכת לטיפול, אלא אם כן את/ה סטודנטים ואז חוקי להיות סקווידוויד
+    <br>
+    <div id="picSquid">
+        <img src ="imgs/squidwin.gif" alt="picSquid" style="width: 200px;">
+    </div>
+</section>
+
+<section id="finalKrab" class="result">
+    <h1>יצאת מר קראב !</h1>
+    <p>בגדול, כנראה שאף אחד לא יודע כמה יש לכם בחשבון
+    </p>
+    <br>
+    <div id="picKrab">
+        <img src ="imgs/krabwin.gif" alt="picKrab" style="width: 200px;">
+    </div>
+</section>
+
+<section id="finalSponsquid" class="result">
+    <h1>יצאת בובספוג וסקווידוויד </h1>
+    <p>מצד אחד יש בכם חיות ואנרגיות מטורפות, מנגד אתם מידי פעם רוצים למות 
+    </p>
+    <br>
+    <div id="Sponsquid">
+        <img src ="imgs/spongesquid.gif" alt="Sponsquid" style="width: 200px;">
+    </div>
+</section>
+
+<section id="finalKrabspon" class="result">
+    <h1>יצאת בובספוג ומר קראב !</h1>
+    <p>אתם אוהבים כסף ומוכנים לעבוד קשה בשבילו 
+    </p>
+    <br>
+    <div id="picKrabspon">
+        <img src ="imgs/krabsponge.gif" alt="picKrabspon" style="width: 200px;">
+    </div>
+</section>
+
+<section id="finalKrabsquid" class="result">
+    <h1>יצאת סקווידוויד ומר קראב !</h1>
+    <p> טוב שמעו, אין שילוב כזה אתה בגדול יצאת טרול בהצלחה
+    </p>
+    <br>
+    <div id="Krabsquid">
+        <img src ="imgs/Krabsquid.gif" alt="Krabsquid" style="width: 200px;">
+    </div>
+</section>
+<br>
+<button id="before" class="buttons">הקודם</button> <button id="next" class="buttons">הבא</button>
+<br>
+<button id="submit" class="buttons" onclick="resultQuestion ()">הגש</button>
 
 </body>
 </html>
