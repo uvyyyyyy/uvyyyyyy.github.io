@@ -22,13 +22,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function saveAnswer(Spongebob) {
+    function saveAnswerSponge(Spongebob) {
         scores[Spongebob] += 1;
     }
-    function saveAnswer(Squidward) {
+    function saveAnswerSquid(Squidward) {
         scores[Squidward] += 1;
     }
-    function saveAnswer(MrKrab) {
+    function saveAnswerKrab(MrKrab) {
         scores[MrKrab] += 1;
     }
     
