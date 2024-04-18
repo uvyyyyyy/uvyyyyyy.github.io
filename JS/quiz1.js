@@ -12,7 +12,6 @@ function hideQuestion () {
     document.getElementById("fourth").style.display = 'none';
     document.getElementById("fifth").style.display = 'none';
     document.getElementById("everyone").style.display = 'block';
-    document.getElementById("sumbit").style.display = 'none';
     
 
     for (var i = 0; i < results.length; i++) {
@@ -28,8 +27,6 @@ function showQuestion1 () {
     document.getElementById("everyone").style.display = 'none';
     document.getElementById("Krabs").style.display = 'block';
     document.getElementById("next").onclick = showQuestion2;
-    document.getElementById("sumbit").style.display = 'none';
-
 }
 function showQuestion2 () {
     document.getElementById("first").style.display = 'none';
@@ -44,8 +41,6 @@ function showQuestion2 () {
     document.getElementById("finalKrab").style.display = 'none';
     document.getElementById("next").onclick = showQuestion3;
     document.getElementById("before").onclick = showQuestion1;
-    document.getElementById("sumbit").style.display = 'none';
-
 }
 function showQuestion3 () {
     document.getElementById("first").style.display = 'none';
@@ -60,7 +55,6 @@ function showQuestion3 () {
     document.getElementById("finalKrab").style.display = 'none';
     document.getElementById("next").onclick = showQuestion4;
     document.getElementById("before").onclick = showQuestion2;
-    document.getElementById("sumbit").style.display = 'none';
 
 }
 function showQuestion4 () {
@@ -76,7 +70,6 @@ function showQuestion4 () {
     document.getElementById("finalKrab").style.display = 'none';
     document.getElementById("next").onclick = showQuestion5;
     document.getElementById("before").onclick = showQuestion3;
-    document.getElementById("sumbit").style.display = 'none';
 
 }
 function showQuestion5 () {
@@ -92,7 +85,6 @@ function showQuestion5 () {
     document.getElementById("finalKrab").style.display = 'none';
     document.getElementById("next").style.display = 'none';
     document.getElementById("before").onclick = showQuestion4;
-    document.getElementById("sumbit").style.display = 'block';
 
 }
 
