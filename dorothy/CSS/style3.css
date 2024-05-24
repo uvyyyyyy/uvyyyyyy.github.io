@@ -1,0 +1,275 @@
+body {
+    margin-top: 40%;
+    background-image: url('../images/homepage3.jpg');
+    background-size: 100% 115%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#girl {
+    width: 66px;
+    height: 72px;
+    background: url(../images/dorothyIdle.png) 0 0;
+    position: absolute;
+    top: 350px;
+    left: 100px;
+    animation: idleAnimation 1s steps(16) infinite;
+    transition: left 3s ease, top 3s ease;
+    z-index: 100;
+    }
+    @keyframes idleAnimation {
+        0% {background-position: 0 0;}
+        100% {background-position: -1056px 0;}
+    }
+    @keyframes walkSpriteAnimation {
+        0% { background-position: 0 0; }
+        100% { background-position: -1056px 0; }
+    }
+    
+    @keyframes moveAnimation {
+        0% { left: 55px; top: 459px; }
+        100% { left: 400px; top: 300px; }
+    }
+    .rockSword {
+        width: 200px;
+        height: 100px;
+        margin: 10px;
+        position: absolute;
+        top: 100px;
+        left: 300px;
+        background-color: transparent;
+        background-position: center;
+        background-repeat: no-repeat;
+        border: none;
+        padding: 0;
+        z-index: 80;
+    }
+    .image-button {
+    
+            width: 210px;
+            height: 30px;
+            margin: 10px;
+            position: absolute;
+            left: 1100px;
+            top: 30px;
+            animation-name:  image-button;
+            animation-delay: 2s;
+        animation-duration: 1s; 
+        animation-fill-mode: forwards;
+            opacity: 0; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center;
+        
+    }
+    @keyframes image-button {
+        0% {
+            opacity: 0; 
+        }
+    
+        100% {
+            opacity: 1; 
+        }
+
+    }
+    div.moveRight {
+        width: 200px;
+        height: 100px;
+        margin: 10px;
+        position: absolute;
+        top: 180px;
+        left: 60px;
+        opacity: 0;
+      
+      }
+      .moveAnimation {
+        animation-delay: 3s;
+        animation-duration: 1s; 
+        animation-fill-mode: forwards;
+        animation-name: moveright;
+        opacity: 1;
+    }
+      @keyframes moveright {
+        0% {
+            left: -450px;
+            opacity: 0;
+        }
+    
+        100% {
+            left: 0px;
+            opacity: 1;
+        }
+    }
+    .buttons {
+        width: 210px;
+        height: 30px;
+        margin: 10px;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        opacity: 0; 
+        animation-name: buttonsAnim;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; 
+        align-items: center;
+    }
+    .buttonsAnim {
+        animation-name: buttonAppear;
+        animation-delay: 5s;
+        animation-duration: 1s; 
+        animation-fill-mode: forwards;
+    }
+    @keyframes buttonAppear {
+        0% {
+            opacity: 0; 
+        }
+    
+        100% {
+            opacity: 1; 
+        }
+    }
+    .rock {
+        width: 200px;
+        height: 100px;
+        margin: 10px;
+        position: absolute;
+        top: 100px;
+        left: 300px;
+        background-color: transparent;
+        background-position: center;
+        background-repeat: no-repeat;
+        border: none;
+        padding: 0;
+        opacity: 0;
+    }
+    .rockAnim {
+        animation-name: rockAppear;
+        animation-delay: 0s;
+        animation-duration: 1s; 
+        animation-fill-mode: forwards;
+    }
+    @keyframes rockAppear {
+        0% {
+            opacity: 0; 
+        }
+    
+        100% {
+            opacity: 1; 
+        }
+    }
+    div.sword {
+        width: 200px;
+        height: 100px;
+        margin: 10px;
+        position: absolute;
+        top: 100px;
+        left: 250px;
+        background-color: transparent;
+        background-position: center;
+        background-repeat: no-repeat;
+        border: none;
+        padding: 0;
+        z-index: 90;
+        opacity: 0;
+    }
+    .swordAnim {
+        animation-name: swordAppear;
+        animation-delay: 0s;
+        animation-duration: 1s; 
+        animation-fill-mode: forwards;
+    }
+    @keyframes swordAppear {
+        0% {
+            opacity: 0; 
+        }
+    
+        100% {
+            opacity: 1; 
+        }
+    }
+    .buttonsOut {
+        width: 210px;
+        height: 30px;
+        margin: 10px;
+        position: absolute;
+        left: 0px;
+        top: 50px;
+        opacity: 0; 
+        animation-name: buttonsAnim;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; 
+        align-items: center;
+    }
+    .buttonsOutAnim {
+        animation-name: buttonsOutAppear;
+        animation-delay: 4s;
+        animation-duration: 1s; 
+        animation-fill-mode: forwards;
+    }
+    @keyframes buttonsOutAppear {
+        0% {
+            opacity: 0; 
+        }
+    
+        100% {
+            opacity: 1; 
+        }
+    }
+    .ending {
+        width: 210px;
+            height: 30px;
+            margin: 10px;
+            position: absolute;
+            left: 1000px;
+            top: 150px;
+            opacity: 0; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center;
+    }
+    .endingAnimation {
+        animation-delay: 8s;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+        animation-name: buttonAppear;
+        
+
+    }
+    
+    @keyframes endingAppear {
+        0% {
+            opacity: 0; 
+        }
+    
+        100% {
+            opacity: 1; 
+        }
+    }
+    div.moveLeft {
+        width: 350px;
+        height: 300px;
+        margin: 10px;
+        position: absolute;
+        top: 70px;
+        left: -2000px;
+        
+    }
+    .startMoveLeftAnimation {
+        animation-name: moveleft;
+        animation-duration: 3s;
+        animation-fill-mode: forwards;
+        opacity: 1; /* Make it visible when the animation starts */
+    }
+    
+    @keyframes moveleft {
+        0% {
+            left: 800px;
+        }
+    
+        100% {
+            left: 500px;
+        }
+    }

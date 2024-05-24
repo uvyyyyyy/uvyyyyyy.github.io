@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>courge 3</title>
+    <link rel="stylesheet" href="CSS/style3.css"> 
+    <style>
+        .image-button {
+            width: 100px; /* Adjust the size as needed */
+            height: 100px; /* Adjust the size as needed */
+            background: url('../dorothy/images/music.png') no-repeat center center;
+            background-size: 800px;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <button class="image-button" onclick="playAudio()"></button>
+    <button id="buttons" class="buttons" onclick="takeSword()"> תלכי לסלע </button>
+<button id="buttonsOut" class="buttonsOut"  onclick="outSword()">תקחי את החרב</button>
+<button  id = "ending" class="ending" onclick="nextPage()">הביסי את הדרקון  </button>
+<audio id="buttonSound1" src="../dorothy/Audio/level.mp3" preload="auto"></audio>
+
+
+    <!-- Hidden Audio element to play the MP3 file -->
+    <audio id="background-audio" style="display: none;">
+        <source src="../dorothy/Audio/dragon.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+
+    <div id="girl" class="girl"></div>
+    <div id="rockSword" class="rockSword"> 
+        <img src="../dorothy/images/rockSword.png" alt="Image 1">
+    </div>
+
+    <div id="moveRight" class="moveRight">
+        <img src="../dorothy/images/dialog/gibora.png" alt="Image 2">
+       </div>
+    <div id="rock" class="rock">
+        <img src="../dorothy/images/rock.png" alt="Image 4">
+    </div>
+    <div id="sword" class="sword">
+        <img src="../dorothy/images/sword2.png" alt="Image 5">
+    </div>
+    <div class="moveLeft">
+        <img src="../dorothy/images/dialog/moregibora.png" alt="Image 6">
+       </div>
+      
+    <script src="JS/courge3.js"></script> 
+    
+ 
+ </body>
+ </html>

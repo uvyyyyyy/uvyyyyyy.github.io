@@ -1,0 +1,224 @@
+body {
+    margin-top: 40%;
+    background-image: url('../images/homepage2.jpg');
+    background-size: 100% 115%;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+}
+#girl {
+    width: 66px;
+    height: 72px;
+    background: url(../images/dorothyIdle.png) 0 0;
+    position: absolute;
+    top: 400px;
+    left: 100px;
+    animation: idleAnimation 1s steps(16) infinite;
+    transition: left 3s ease, top 3s ease;
+    z-index: 100;
+    }
+    @keyframes idleAnimation {
+        0% {background-position: 0 0;}
+        100% {background-position: -1056px 0;}
+    }
+    @keyframes walkSpriteAnimation {
+        0% { background-position: 0 0; }
+        100% { background-position: -1056px 0; }
+    }
+    
+    @keyframes moveAnimation {
+        0% { left: 55px; top: 459px; }
+        100% { left: 400px; top: 300px; }
+    }
+    .buttons {
+        width: 210px;
+        height: 30px;
+        margin: 10px;
+        position: relative;
+        left: 0px;
+        top: -500px;
+        opacity: 0; 
+        animation-name: buttonAppear;
+        animation-delay: 5s;
+        animation-duration: 1s; 
+        animation-fill-mode: forwards;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; 
+        align-items: center;
+    }
+    @keyframes buttonAppear {
+        0% {
+            opacity: 0; 
+        }
+    
+        100% {
+            opacity: 1; 
+        }
+    }
+    div.moveRight {
+        width: 200px;
+        height: 100px;
+        margin: 10px;
+        position: absolute;
+        top: 180px;
+        left: 60px;
+        animation-name: moveright;
+        animation-duration: 3s;
+        animation-fill-mode: forwards;
+      }
+      @keyframes moveright {
+        0% {
+            left: -450px;
+        }
+    
+        100% {
+            left: -90px;
+        }
+    }
+    .build {
+        width: 210px;
+        height: 30px;
+        margin: 10px;
+        position: relative;
+        left: 0px;
+        top: -500px;
+        opacity: 0; 
+        display: flex;
+        flex-direction: column;
+        justify-content: center; 
+        align-items: center;
+    }
+    .buildAnimation {
+        animation-delay: 3s;
+        animation-duration: 1s; 
+        animation-fill-mode: forwards;
+        animation-name: buttonAppear;
+        
+
+    }
+ 
+    .logsim {
+        width: 200px;
+        height: 100px;
+        margin: 10px;
+        position: absolute;
+        top: 200px;
+        left: -120px;
+        background-color: transparent;
+        background-position: center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        border: none;
+        padding: 0;
+      }
+      div.log {
+        width: 200px;
+        height: 100px;
+        margin: 10px;
+        position: absolute;
+        top: 240px;
+        left: 150px;
+        opacity: 0;
+        
+      }
+
+      div.log2 {
+        width: 200px;
+        height: 100px;
+        margin: 10px;
+        position: absolute;
+        top: 215px;
+        left: 210px;
+        opacity: 0;
+      }
+      div.log3 {
+        width: 200px;
+        height: 100px;
+        margin: 10px;
+        position: absolute;
+        top: 190px;
+        left: 270px;
+        opacity: 0;
+      }
+      div.moveLeft {
+        width: 350px;
+        height: 300px;
+        margin: 10px;
+        position: absolute;
+        top: 100px;
+        left: -2000px;
+        
+    }
+    .startMoveLeftAnimation {
+        animation-name: moveleft;
+        animation-duration: 3s;
+        animation-fill-mode: forwards;
+        opacity: 1; /* Make it visible when the animation starts */
+    }
+    
+    @keyframes moveleft {
+        0% {
+            left: 2000px;
+        }
+    
+        100% {
+            left: 750px;
+        }
+    }
+    div.moveImage {
+        width: 350px;
+        height: 300px;
+        margin: 10px;
+        position: absolute;
+        top: -1000px;
+        left: 600px;
+        
+    }
+    .startMoveImageAnimation {
+        animation-name: moveimage;
+        animation-duration: 6s;
+        animation-fill-mode: forwards;
+        opacity: 1; /* Make it visible when the animation starts */
+    }
+    
+    @keyframes moveimage {
+        0% {
+            top: 1000px;
+        }
+    
+        100% {
+            top: 100px;
+        }
+    }
+    .ending {
+        width: 210px;
+            height: 30px;
+            margin: 10px;
+            position: absolute;
+            left: 1000px;
+            top: 0px;
+            opacity: 0; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center;
+    }
+    .endingAnimation {
+        animation-delay: 11s;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+        animation-name: buttonAppear;
+        
+
+    }
+    
+    @keyframes endingAppear {
+        0% {
+            opacity: 0; 
+        }
+    
+        100% {
+            opacity: 1; 
+        }
+    }
