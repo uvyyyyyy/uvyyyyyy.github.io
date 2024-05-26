@@ -92,6 +92,7 @@ body {
         flex-direction: column;
         justify-content: center; 
         align-items: center;
+        z-index: 110;
     }
     .buildAnimation {
         animation-delay: 3s;
@@ -208,6 +209,7 @@ body {
             flex-direction: column;
             justify-content: center; 
             align-items: center;
+            z-index: 110;
     }
     .endingAnimation {
         animation-delay: 11s;
