@@ -87,6 +87,8 @@ body {
         flex-direction: column;
         justify-content: center; 
         align-items: center;
+        z-index: 110;
+
     }
     .buttonsAnim {
         animation-name: buttonAppear;
@@ -199,6 +201,8 @@ body {
             flex-direction: column;
             justify-content: center; 
             align-items: center;
+            z-index: 110;
+
     }
     .endingAnimation {
         animation-delay: 6s;
