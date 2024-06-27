@@ -1,0 +1,11 @@
+body {
+    direction: rtl;
+    background-image: url(/images/quiz.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: center;
+    margin-top: 10vh; /* Consistent top margin relative to the viewport height */
+    font-family: 'Rubik', sans-serif;
+    color: #333; /* Ensure text is readable */
+}
