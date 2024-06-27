@@ -18,13 +18,13 @@ const questions = [
 	"Myself",
 	"No one"]
 	["Where do you live ? ",
-		"\images\house.jpg", 
+		"images/house.jpg", 
 		"Tel aviv",
 		"New york",
 		"Madrid",
 		"other"]
 	["What is your dream ? ",
-		"\images\dream.jpg", 
+		"images/dream.jpg", 
 			"To be rich",
 			"To be famouse",
 			"To be a singer",
