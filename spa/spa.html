@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			Single Page App
+		</title>		
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<!-- javascript at the end -->
+	</head>
+<body>
+	<div id="questions">
+		<div id="questioni" class="questioni question" style="display:none">
+			<div id="qtexti" class="qtexti qtext"> Question Text </div>
+			<div id="qimagei" class="qimagei qimage"></div>
+			<div id="answersi" class="divanswersi divanswers">
+				<div id="answeri_j" onclick="choose(i,j)" class="answersi answers"> One </div>
+			</div>
+		</div>
+	</div>
+
+	<div id="prev">Previous</div>
+	<div id="next">Next</div>
+	<div id="results"></div>
+
+</body>
+<script src="js/spalogic.js"></script>
+<script src="js/spadata.js"></script>
+</html>
