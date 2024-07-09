@@ -17,6 +17,18 @@ const questions = [
 	"The Left",
 	"Myself",
 	"No one"]
+	["Who is to blame? ",
+		"http://www.safetydifferently.com/wp-content/uploads/2016/06/blame-someone.jpg", 
+		"Everyone",
+		"The Left",
+		"Myself",
+		"No one"]
+	["Who is to blame? ",
+			"http://www.safetydifferently.com/wp-content/uploads/2016/06/blame-someone.jpg", 
+			"Everyone",
+			"The Left",
+			"Myself",
+			"No one"]
 ];
 
 const NO_ANSWER = 0;
