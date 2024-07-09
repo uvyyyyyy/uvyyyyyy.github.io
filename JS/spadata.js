@@ -17,18 +17,18 @@ const questions = [
 	"The Left",
 	"Myself",
 	"No one"]
-	["Who is to blame? ",
+	["What is your pleasure? ",
 		"http://www.safetydifferently.com/wp-content/uploads/2016/06/blame-someone.jpg", 
-		"Everyone",
-		"The Left",
-		"Myself",
-		"No one"]
-	["Who is to blame? ",
+		"Secrets",
+		"Clowns",
+		"Books",
+		"Cinema"]
+	["What makes you happy? ",
 			"http://www.safetydifferently.com/wp-content/uploads/2016/06/blame-someone.jpg", 
-			"Everyone",
-			"The Left",
-			"Myself",
-			"No one"]
+			"Food",
+			"reality show",
+			"Party",
+			"Nothing"]
 ];
 
 const NO_ANSWER = 0;
