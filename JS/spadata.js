@@ -18,17 +18,17 @@ const questions = [
 	"Myself",
 	"No one"]
 	["What is your pleasure? ",
-		"http://www.safetydifferently.com/wp-content/uploads/2016/06/blame-someone.jpg", 
-		"Secrets",
-		"Clowns",
-		"Books",
-		"Cinema"]
+	"http://www.safetydifferently.com/wp-content/uploads/2016/06/blame-someone.jpg", 
+	"Secrets",
+	"Clowns",
+	"Books",
+	"Cinema"]
 	["What makes you happy? ",
-			"http://www.safetydifferently.com/wp-content/uploads/2016/06/blame-someone.jpg", 
-			"Food",
-			"reality show",
-			"Party",
-			"Nothing"]
+	"http://www.safetydifferently.com/wp-content/uploads/2016/06/blame-someone.jpg", 
+	"Food",
+	"reality show",
+	"Party",
+	"Nothing"]
 ];
 
 const NO_ANSWER = 0;
