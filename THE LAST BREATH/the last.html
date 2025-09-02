@@ -26,6 +26,21 @@
       font-weight: bold;
       color: #fff;
     }
+    #oxygenBar {
+      width: 200px;
+      height: 20px;
+      border: 2px solid white;
+      margin: 10px auto;
+      background: gray;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    #oxygenFill {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(to right, cyan, blue);
+      transition: width 0.2s;
+    }
     #retry {
       display: none;
       margin-top: 15px;
@@ -41,8 +56,8 @@
 <body>
   <div id="ui">
     <span id="score">Score: 0</span> | 
-    <span id="oxygen">Oxygen: 100</span> | 
     <span id="life">Life: 3</span><br>
+    <div id="oxygenBar"><div id="oxygenFill"></div></div>
     <button id="retry">Retry</button>
   </div>
   <canvas id="gameCanvas" width="960" height="600"></canvas>
@@ -51,28 +66,37 @@
     const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");
     const retryBtn = document.getElementById("retry");
+    const oxygenFill = document.getElementById("oxygenFill");
 
     // === Load Images ===
-    const bg = new Image();
-    bg.src = "stars.png"; // your star background
-    const playerImg = new Image();
-    playerImg.src = "player.png"; // astronaut
-    const shipImg = new Image();
-    shipImg.src = "ship.png"; // spaceship
-    const alienImg = new Image();
-    alienImg.src = "alien.png"; // alien
+    const bg = new Image(); bg.src = "stars.png";
+    const playerImg = new Image(); playerImg.src = "player.png";
+    const alienImg = new Image(); alienImg.src = "alien.png";
+    const oxygenImg = new Image(); oxygenImg.src = "oxygen.png";
+    const shipImg = new Image(); shipImg.src = "ship.png";
 
     // === Sounds ===
-    const hitSound = new Audio("hit.mp3");
+    const shootSound = new Audio("shoot.mp3");
     const repairSound = new Audio("repair.mp3");
+    const gameOverSound = new Audio("gameover.mp3");
+    const bgMusic = new Audio("bgmusic.mp3");
+    const winSound = new Audio("win.mp3");
+
+    bgMusic.loop = true;
+    bgMusic.volume = 0.5;
+    bgMusic.play();
 
     // === Game Variables ===
-    let player = { x: 100, y: 300, w: 50, h: 50, lives: 3, oxygen: 100 };
+    let player = { x: 100, y: 500, w: 50, h: 50, lives: 3, oxygen: 100 };
     let aliens = [];
+    let bullets = [];
+    let oxygens = [];
     let score = 0;
     let speed = 2;
     let gameOver = false;
+    let gameWin = false;
     let bgY = 0;
+    let ship = null;
 
     // === Controls ===
     let keys = {};
@@ -81,82 +105,203 @@
 
     // === Spawn Aliens ===
     function spawnAlien() {
-      aliens.push({ x: canvas.width, y: Math.random()*canvas.height, w:50, h:50 });
+      aliens.push({ x: canvas.width, y: Math.random() * (canvas.height-100), w: 50, h: 50 });
     }
     setInterval(spawnAlien, 1500);
 
+    // === Spawn Oxygen ===
+    function spawnOxygen() {
+      oxygens.push({ x: canvas.width, y: Math.random() * (canvas.height-100), w: 40, h: 40 });
+    }
+    setInterval(spawnOxygen, 8000);
+
+    // === Shoot Bullets ===
+    function shoot() {
+      bullets.push({ x: player.x + player.w, y: player.y + player.h/2 - 5, w: 10, h: 5 });
+      shootSound.currentTime = 0;
+      shootSound.play();
+    }
+
     // === Update ===
     function update() {
-      if (gameOver) return;
+      if (gameOver || gameWin) return;
 
       // Background parallax
       bgY += speed/4;
       if (bgY > canvas.height) bgY = 0;
 
-      // Player movement
-      if (keys["ArrowUp"]) player.y -= 5;
-      if (keys["ArrowDown"]) player.y += 5;
+      // Player movement (side only)
       if (keys["ArrowLeft"]) player.x -= 5;
       if (keys["ArrowRight"]) player.x += 5;
 
+      // Shoot when Shift is pressed
+      if (keys["Shift"]) {
+        if (!keys.shooting) { 
+          shoot();
+          keys.shooting = true;
+        }
+      } else {
+        keys.shooting = false;
+      }
+
       // Keep inside canvas
-      player.x = Math.max(0, Math.min(player.x, canvas.width-player.w));
-      player.y = Math.max(0, Math.min(player.y, canvas.height-player.h));
+      player.x = Math.max(0, Math.min(player.x, canvas.width - player.w));
 
       // Move aliens
       for (let a of aliens) {
         a.x -= speed;
         if (a.x < -a.w) {
-          aliens.splice(aliens.indexOf(a),1);
+          aliens.splice(aliens.indexOf(a), 1);
           score++;
         }
-        // Collision
-        if (a.x < player.x+player.w && a.x+a.w > player.x &&
-            a.y < player.y+player.h && a.y+a.h > player.y) {
-          aliens.splice(aliens.indexOf(a),1);
-          player.lives--;
-          player.oxygen -= 20;
-          hitSound.play();
-          if (player.lives <= 0 || player.oxygen <= 0) {
-            gameOver = true;
-            retryBtn.style.display = "inline-block";
+      }
+
+      // Move bullets
+      for (let b of bullets) {
+        b.x += 10;
+        if (b.x > canvas.width) {
+          bullets.splice(bullets.indexOf(b), 1);
+        }
+      }
+
+      // Bullet collision with aliens
+      for (let b of bullets) {
+        for (let a of aliens) {
+          if (b.x < a.x + a.w && b.x + b.w > a.x &&
+              b.y < a.y + a.h && b.y + b.h > a.y) {
+            aliens.splice(aliens.indexOf(a), 1);
+            bullets.splice(bullets.indexOf(b), 1);
+            score += 5;
           }
         }
       }
 
+      // Alien collision with player
+      for (let a of aliens) {
+        if (a.x < player.x + player.w && a.x + a.w > player.x &&
+            a.y < player.y + player.h && a.y + a.h > player.y) {
+          aliens.splice(aliens.indexOf(a), 1);
+          player.lives--;
+          player.oxygen -= 20;
+          if (player.lives <= 0 || player.oxygen <= 0) {
+            endGame();
+          }
+        }
+      }
+
+      // Oxygen tanks movement + collision
+      for (let o of oxygens) {
+        o.x -= speed;
+        if (o.x < -o.w) {
+          oxygens.splice(oxygens.indexOf(o), 1);
+        }
+        if (o.x < player.x + player.w && o.x + o.w > player.x &&
+            o.y < player.y + player.h && o.y + o.h > player.y) {
+          oxygens.splice(oxygens.indexOf(o), 1);
+          player.oxygen = Math.min(100, player.oxygen + 30);
+          repairSound.currentTime = 0;
+          repairSound.play();
+        }
+      }
+
       // Oxygen slowly decreases
-      player.oxygen -= 0.05;
+      player.oxygen -= 0.02;
       if (player.oxygen <= 0) {
-        player.lives = 0;
-        gameOver = true;
-        retryBtn.style.display = "inline-block";
+        endGame();
       }
 
       // Increase speed
       speed += 0.001;
+
+      // Update oxygen bar
+      oxygenFill.style.width = player.oxygen + "%";
+
+      // === Check for spaceship unlock ===
+      if (score >= 100 && !ship) {
+        ship = { x: canvas.width, y: canvas.height/2 - 100, w: 150, h: 150 };
+      }
+
+      // Move spaceship if exists
+      if (ship) {
+        ship.x -= 2;
+        // Collision with player = Win
+        if (ship.x < player.x + player.w && ship.x + ship.w > player.x &&
+            ship.y < player.y + player.h && ship.y + ship.h > player.y) {
+          winGame();
+        }
+      }
     }
 
     // === Draw ===
     function draw() {
-      ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Background stars parallax
-      ctx.drawImage(bg,0,bgY,canvas.width,canvas.height);
-      ctx.drawImage(bg,0,bgY-canvas.height,canvas.width,canvas.height);
+      ctx.drawImage(bg, 0, bgY, canvas.width, canvas.height);
+      ctx.drawImage(bg, 0, bgY - canvas.height, canvas.width, canvas.height);
 
       // Player
-      ctx.drawImage(playerImg,player.x,player.y,player.w,player.h);
+      ctx.drawImage(playerImg, player.x, player.y, player.w, player.h);
 
       // Aliens
       for (let a of aliens) {
-        ctx.drawImage(alienImg,a.x,a.y,a.w,a.h);
+        ctx.drawImage(alienImg, a.x, a.y, a.w, a.h);
+      }
+
+      // Bullets (animated laser)
+      for (let b of bullets) {
+        const colors = ["cyan", "magenta", "red", "yellow"];
+        const color = colors[Math.floor(Date.now() / 100) % colors.length];
+        ctx.save();
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = color;
+        ctx.fillStyle = color;
+        ctx.fillRect(b.x, b.y, b.w * 3, b.h);
+        ctx.restore();
+      }
+
+      // Oxygen tanks
+      for (let o of oxygens) {
+        ctx.drawImage(oxygenImg, o.x, o.y, o.w, o.h);
+      }
+
+      // Spaceship (goal)
+      if (ship) {
+        ctx.drawImage(shipImg, ship.x, ship.y, ship.w, ship.h);
       }
 
       // UI
       document.getElementById("score").textContent = "Score: " + score;
-      document.getElementById("oxygen").textContent = "Oxygen: " + Math.floor(player.oxygen);
       document.getElementById("life").textContent = "Life: " + player.lives;
+
+      if (gameWin) {
+        ctx.fillStyle = "lime";
+        ctx.font = "48px Arial";
+        ctx.fillText("You Escaped! 🚀", canvas.width/2 - 150, canvas.height/2);
+      }
     }
+
+    // === End Game ===
+    function endGame() {
+      if (!gameOver) {
+        gameOver = true;
+        bgMusic.pause();
+        gameOverSound.play();
+        retryBtn.style.display = "inline-block";
+      }
+    }
+
+    // === Win Game ===
+ function winGame() {
+  if (!gameWin) {
+    gameWin = true;
+    bgMusic.pause();
+    winSound.play();  // 🎵 מנגן את הצליל
+    retryBtn.style.display = "inline-block";
+  }
+}
+
+    
 
     // === Game Loop ===
     function loop() {
@@ -168,12 +313,18 @@
 
     // Retry button
     retryBtn.addEventListener("click", () => {
-      player = { x: 100, y: 300, w: 50, h: 50, lives: 3, oxygen: 100 };
+      player = { x: 100, y: 500, w: 50, h: 50, lives: 3, oxygen: 100 };
       aliens = [];
+      bullets = [];
+      oxygens = [];
       score = 0;
       speed = 2;
       gameOver = false;
+      gameWin = false;
+      ship = null;
       retryBtn.style.display = "none";
+      bgMusic.currentTime = 0;
+      bgMusic.play();
     });
   </script>
 </body>
