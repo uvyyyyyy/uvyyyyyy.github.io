@@ -16,6 +16,7 @@
       display: block;
       margin: auto;
       background: #000;
+      touch-action: none;
     }
     #ui {
       position: absolute;
@@ -51,6 +52,29 @@
       cursor: pointer;
       font-size: 18px;
     }
+    /* כפתורי מובייל */
+    #controls {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 15px;
+    }
+    .btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      border: 2px solid white;
+      color: white;
+      font-size: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -60,7 +84,15 @@
     <div id="oxygenBar"><div id="oxygenFill"></div></div>
     <button id="retry">Retry</button>
   </div>
+
   <canvas id="gameCanvas" width="960" height="600"></canvas>
+
+  <!-- כפתורי מובייל -->
+  <div id="controls">
+    <div class="btn" id="left">👈</div>
+    <div class="btn" id="shoot">🔫</div>
+    <div class="btn" id="right">👉</div>
+  </div>
 
   <script>
     const canvas = document.getElementById("gameCanvas");
@@ -79,9 +111,8 @@
     const shootSound = new Audio("shoot.mp3");
     const repairSound = new Audio("repair.mp3");
     const gameOverSound = new Audio("gameover.mp3");
-    const bgMusic = new Audio("bgmusic.mp3");
     const winSound = new Audio("win.mp3");
-
+    const bgMusic = new Audio("bgmusic.mp3");
     bgMusic.loop = true;
     bgMusic.volume = 0.5;
     bgMusic.play();
@@ -99,9 +130,28 @@
     let ship = null;
 
     // === Controls ===
-    let keys = {};
-    window.addEventListener("keydown", e => keys[e.key] = true);
-    window.addEventListener("keyup", e => keys[e.key] = false);
+    let keys = { ArrowLeft: false, ArrowRight: false, Shoot: false };
+
+    window.addEventListener("keydown", e => {
+      if (e.key === "ArrowLeft") keys.ArrowLeft = true;
+      if (e.key === "ArrowRight") keys.ArrowRight = true;
+      if (e.key === "Shift") keys.Shoot = true;
+    });
+    window.addEventListener("keyup", e => {
+      if (e.key === "ArrowLeft") keys.ArrowLeft = false;
+      if (e.key === "ArrowRight") keys.ArrowRight = false;
+      if (e.key === "Shift") keys.Shoot = false;
+    });
+
+    // === Mobile Controls ===
+    document.getElementById("left").addEventListener("touchstart", () => keys.ArrowLeft = true);
+    document.getElementById("left").addEventListener("touchend", () => keys.ArrowLeft = false);
+
+    document.getElementById("right").addEventListener("touchstart", () => keys.ArrowRight = true);
+    document.getElementById("right").addEventListener("touchend", () => keys.ArrowRight = false);
+
+    document.getElementById("shoot").addEventListener("touchstart", () => keys.Shoot = true);
+    document.getElementById("shoot").addEventListener("touchend", () => keys.Shoot = false);
 
     // === Spawn Aliens ===
     function spawnAlien() {
@@ -130,13 +180,14 @@
       bgY += speed/4;
       if (bgY > canvas.height) bgY = 0;
 
-      // Player movement (side only)
-      if (keys["ArrowLeft"]) player.x -= 5;
-      if (keys["ArrowRight"]) player.x += 5;
+      // Player movement (side only, y קבוע)
+      if (keys.ArrowLeft) player.x -= 5;
+      if (keys.ArrowRight) player.x += 5;
+      player.y = 500; // שומר על גובה קבוע
 
-      // Shoot when Shift is pressed
-      if (keys["Shift"]) {
-        if (!keys.shooting) { 
+      // Shoot when active
+      if (keys.Shoot) {
+        if (!keys.shooting) {
           shoot();
           keys.shooting = true;
         }
@@ -218,13 +269,12 @@
 
       // === Check for spaceship unlock ===
       if (score >= 100 && !ship) {
-        ship = { x: canvas.width, y: canvas.height/2 - 100, w: 150, h: 150 };
+        ship = { x: canvas.width, y: player.y - 50, w: 150, h: 150 };
       }
 
       // Move spaceship if exists
       if (ship) {
         ship.x -= 2;
-        // Collision with player = Win
         if (ship.x < player.x + player.w && ship.x + ship.w > player.x &&
             ship.y < player.y + player.h && ship.y + ship.h > player.y) {
           winGame();
@@ -236,19 +286,13 @@
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Background stars parallax
       ctx.drawImage(bg, 0, bgY, canvas.width, canvas.height);
       ctx.drawImage(bg, 0, bgY - canvas.height, canvas.width, canvas.height);
 
-      // Player
       ctx.drawImage(playerImg, player.x, player.y, player.w, player.h);
 
-      // Aliens
-      for (let a of aliens) {
-        ctx.drawImage(alienImg, a.x, a.y, a.w, a.h);
-      }
+      for (let a of aliens) ctx.drawImage(alienImg, a.x, a.y, a.w, a.h);
 
-      // Bullets (animated laser)
       for (let b of bullets) {
         const colors = ["cyan", "magenta", "red", "yellow"];
         const color = colors[Math.floor(Date.now() / 100) % colors.length];
@@ -260,17 +304,10 @@
         ctx.restore();
       }
 
-      // Oxygen tanks
-      for (let o of oxygens) {
-        ctx.drawImage(oxygenImg, o.x, o.y, o.w, o.h);
-      }
+      for (let o of oxygens) ctx.drawImage(oxygenImg, o.x, o.y, o.w, o.h);
 
-      // Spaceship (goal)
-      if (ship) {
-        ctx.drawImage(shipImg, ship.x, ship.y, ship.w, ship.h);
-      }
+      if (ship) ctx.drawImage(shipImg, ship.x, ship.y, ship.w, ship.h);
 
-      // UI
       document.getElementById("score").textContent = "Score: " + score;
       document.getElementById("life").textContent = "Life: " + player.lives;
 
@@ -281,7 +318,6 @@
       }
     }
 
-    // === End Game ===
     function endGame() {
       if (!gameOver) {
         gameOver = true;
@@ -291,19 +327,15 @@
       }
     }
 
-    // === Win Game ===
- function winGame() {
-  if (!gameWin) {
-    gameWin = true;
-    bgMusic.pause();
-    winSound.play();  // 🎵 מנגן את הצליל
-    retryBtn.style.display = "inline-block";
-  }
-}
+    function winGame() {
+      if (!gameWin) {
+        gameWin = true;
+        bgMusic.pause();
+        winSound.play();
+        retryBtn.style.display = "inline-block";
+      }
+    }
 
-    
-
-    // === Game Loop ===
     function loop() {
       update();
       draw();
@@ -311,7 +343,6 @@
     }
     loop();
 
-    // Retry button
     retryBtn.addEventListener("click", () => {
       player = { x: 100, y: 500, w: 50, h: 50, lives: 3, oxygen: 100 };
       aliens = [];
