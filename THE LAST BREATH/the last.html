@@ -52,7 +52,6 @@
       cursor: pointer;
       font-size: 18px;
     }
-    /* כפתורי מובייל */
     #controls {
       position: absolute;
       bottom: 20px;
@@ -87,7 +86,6 @@
 
   <canvas id="gameCanvas" width="960" height="600"></canvas>
 
-  <!-- כפתורי מובייל -->
   <div id="controls">
     <div class="btn" id="left">👈</div>
     <div class="btn" id="shoot">🔫</div>
@@ -102,7 +100,7 @@
 
     // === Load Images ===
     const bg = new Image(); bg.src = "stars.png";
-    const playerImg = new Image(); playerImg.src = "player.png";
+    const playerImg = new Image(); playerImg.src = "01.png";
     const alienImg = new Image(); alienImg.src = "alien.png";
     const oxygenImg = new Image(); oxygenImg.src = "oxygen.png";
     const shipImg = new Image(); shipImg.src = "ship.png";
@@ -126,7 +124,7 @@
     let speed = 2;
     let gameOver = false;
     let gameWin = false;
-    let bgY = 0;
+    let bgX = 0;
     let ship = null;
 
     // === Controls ===
@@ -146,10 +144,8 @@
     // === Mobile Controls ===
     document.getElementById("left").addEventListener("touchstart", () => keys.ArrowLeft = true);
     document.getElementById("left").addEventListener("touchend", () => keys.ArrowLeft = false);
-
     document.getElementById("right").addEventListener("touchstart", () => keys.ArrowRight = true);
     document.getElementById("right").addEventListener("touchend", () => keys.ArrowRight = false);
-
     document.getElementById("shoot").addEventListener("touchstart", () => keys.Shoot = true);
     document.getElementById("shoot").addEventListener("touchend", () => keys.Shoot = false);
 
@@ -176,14 +172,14 @@
     function update() {
       if (gameOver || gameWin) return;
 
-      // Background parallax
-      bgY += speed/4;
-      if (bgY > canvas.height) bgY = 0;
+      // Background parallax - scroll sideways
+      bgX -= speed/4;
+      if (bgX <= -canvas.width) bgX = 0;
 
-      // Player movement (side only, y קבוע)
+      // Player movement (side only)
       if (keys.ArrowLeft) player.x -= 5;
       if (keys.ArrowRight) player.x += 5;
-      player.y = 500; // שומר על גובה קבוע
+      player.y = 500; // קיבוע גובה
 
       // Shoot when active
       if (keys.Shoot) {
@@ -267,12 +263,11 @@
       // Update oxygen bar
       oxygenFill.style.width = player.oxygen + "%";
 
-      // === Check for spaceship unlock ===
+      // Spaceship goal
       if (score >= 100 && !ship) {
         ship = { x: canvas.width, y: player.y - 50, w: 150, h: 150 };
       }
 
-      // Move spaceship if exists
       if (ship) {
         ship.x -= 2;
         if (ship.x < player.x + player.w && ship.x + ship.w > player.x &&
@@ -286,8 +281,9 @@
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      ctx.drawImage(bg, 0, bgY, canvas.width, canvas.height);
-      ctx.drawImage(bg, 0, bgY - canvas.height, canvas.width, canvas.height);
+      // Scrolling background
+      ctx.drawImage(bg, bgX, 0, canvas.width, canvas.height);
+      ctx.drawImage(bg, bgX + canvas.width, 0, canvas.width, canvas.height);
 
       ctx.drawImage(playerImg, player.x, player.y, player.w, player.h);
 
