@@ -122,8 +122,12 @@
     bgMusic.volume = 0.5;
     bgMusic.play();
 
+    // === Ground Level ===
+    const groundY = 500; // קו הרצפה (כאן הדמויות יעמדו)
+    const scale = 0.5;   // סקיילינג אחיד לכל הדמויות
+
     // === Game Variables ===
-    let player = { x: 100, y: 500, w: 50, h: 50, lives: 3, oxygen: 100 };
+    let player = { x: 100, y: groundY, w: 0, h: 0, lives: 3, oxygen: 100 };
     let aliens = [];
     let bullets = [];
     let oxygens = [];
@@ -132,6 +136,13 @@
     let gameWin = false;
     let bgX = 0;
     let ship = null;
+
+    // כשנטענת הדמות, נחשב את הגודל שלה
+    playerImg.onload = () => {
+      player.w = playerImg.width * scale;
+      player.h = playerImg.height * scale;
+      player.y = groundY - player.h;
+    };
 
     // === Controls ===
     let keys = { ArrowLeft: false, ArrowRight: false, Shoot: false };
@@ -156,12 +167,16 @@
 
     // === Spawn Aliens & Oxygen ===
     function spawnAlien() {
-      aliens.push({ x: canvas.width, y: player.y, w: 50, h: 50 });
+      let w = alienImg.width * scale;
+      let h = alienImg.height * scale;
+      aliens.push({ x: canvas.width, y: groundY - h, w, h });
     }
     setInterval(spawnAlien, 2500);
 
     function spawnOxygen() {
-      oxygens.push({ x: canvas.width, y: player.y, w: 40, h: 40 });
+      let w = oxygenImg.width * scale;
+      let h = oxygenImg.height * scale;
+      oxygens.push({ x: canvas.width, y: groundY - h, w, h });
     }
     setInterval(spawnOxygen, 8000);
 
@@ -181,7 +196,6 @@
 
       if (keys.ArrowLeft) player.x -= 5;
       if (keys.ArrowRight) player.x += 5;
-      player.y = 500;
 
       if (keys.Shoot && !keys.shooting) {
         shoot();
@@ -234,7 +248,9 @@
       lifeUI.textContent = "Life: " + player.lives;
 
       if (score >= 100 && !ship) {
-        ship = { x: canvas.width, y: player.y - 50, w: 150, h: 150 };
+        let w = shipImg.width * scale;
+        let h = shipImg.height * scale;
+        ship = { x: canvas.width, y: groundY - h, w, h };
       }
       if (ship) {
         ship.x -= 2;
@@ -248,7 +264,7 @@
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(bg, bgX, 0, canvas.width, canvas.height);
       ctx.drawImage(bg, bgX + canvas.width, 0, canvas.width, canvas.height);
-      ctx.drawImage(playerImg, player.x, player.y, player.w, player.h);
+      if (player.w && player.h) ctx.drawImage(playerImg, player.x, player.y, player.w, player.h);
       aliens.forEach(a => ctx.drawImage(alienImg, a.x, a.y, a.w, a.h));
       bullets.forEach(b => {
         ctx.fillStyle = "yellow";
@@ -284,7 +300,7 @@
     loop();
 
     retryBtn.addEventListener("click", () => {
-      player = { x: 100, y: 500, w: 50, h: 50, lives: 3, oxygen: 100 };
+      player = { x: 100, y: groundY, w: playerImg.width * scale, h: playerImg.height * scale, lives: 3, oxygen: 100 };
       aliens = [];
       bullets = [];
       oxygens = [];
