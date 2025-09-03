@@ -87,7 +87,7 @@
   </div>
 
   <!-- Canvas -->
-  <canvas id="gameCanvas" width="960" height="600"></canvas>
+  <canvas id="gameCanvas"></canvas>
 
   <!-- Mobile Controls -->
   <div id="controls">
@@ -122,12 +122,24 @@
     bgMusic.volume = 0.5;
     bgMusic.play();
 
-    // === Ground Level ===
-    const groundY = 500; // קו הרצפה (כאן הדמויות יעמדו)
-    const scale = 0.5;   // סקיילינג אחיד לכל הדמויות
+    // === Responsive Resize ===
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      groundY = canvas.height - 100; // רצפה תמיד 100px מעל התחתית
+      scale = canvas.width / 2000;   // סקיילינג יחסי למסך
+      if (scale < 0.3) scale = 0.3;  // שלא יהיה קטן מדי
+      resetPlayerSize();
+    }
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    // === Ground & Scale ===
+    let groundY;
+    let scale;
 
     // === Game Variables ===
-    let player = { x: 100, y: groundY, w: 0, h: 0, lives: 3, oxygen: 100 };
+    let player = { x: 100, y: 0, w: 0, h: 0, lives: 3, oxygen: 100 };
     let aliens = [];
     let bullets = [];
     let oxygens = [];
@@ -137,12 +149,15 @@
     let bgX = 0;
     let ship = null;
 
-    // כשנטענת הדמות, נחשב את הגודל שלה
-    playerImg.onload = () => {
-      player.w = playerImg.width * scale;
-      player.h = playerImg.height * scale;
-      player.y = groundY - player.h;
-    };
+    function resetPlayerSize() {
+      if (playerImg.width) {
+        player.w = playerImg.width * scale;
+        player.h = playerImg.height * scale;
+        player.y = groundY - player.h;
+      }
+    }
+
+    playerImg.onload = resetPlayerSize;
 
     // === Controls ===
     let keys = { ArrowLeft: false, ArrowRight: false, Shoot: false };
@@ -300,7 +315,7 @@
     loop();
 
     retryBtn.addEventListener("click", () => {
-      player = { x: 100, y: groundY, w: playerImg.width * scale, h: playerImg.height * scale, lives: 3, oxygen: 100 };
+      resetPlayerSize();
       aliens = [];
       bullets = [];
       oxygens = [];
