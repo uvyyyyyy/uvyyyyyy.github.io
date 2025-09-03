@@ -26,6 +26,7 @@
       font-size: 20px;
       font-weight: bold;
       color: #fff;
+      z-index: 10;
     }
     #oxygenBar {
       width: 200px;
@@ -77,6 +78,7 @@
   </style>
 </head>
 <body>
+  <!-- UI -->
   <div id="ui">
     <span id="score">Score: 0</span> | 
     <span id="life">Life: 3</span><br>
@@ -84,8 +86,10 @@
     <button id="retry">Retry</button>
   </div>
 
+  <!-- Canvas -->
   <canvas id="gameCanvas" width="960" height="600"></canvas>
 
+  <!-- Mobile Controls -->
   <div id="controls">
     <div class="btn" id="left">👈</div>
     <div class="btn" id="shoot">🔫</div>
@@ -95,11 +99,14 @@
   <script>
     const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");
-    const retryBtn = document.getElementById("retry");
-    const oxygenFill = document.getElementById("oxygenFill");
 
-    // === Load Images ===
-    const bg = new Image(); bg.src = "stars.png";
+    const scoreUI = document.getElementById("score");
+    const lifeUI = document.getElementById("life");
+    const oxygenFill = document.getElementById("oxygenFill");
+    const retryBtn = document.getElementById("retry");
+
+    // === Images ===
+    const bg = new Image(); bg.src = "stars.jpg";
     const playerImg = new Image(); playerImg.src = "player.png";
     const alienImg = new Image(); alienImg.src = "alien.png";
     const oxygenImg = new Image(); oxygenImg.src = "oxygen.png";
@@ -121,7 +128,6 @@
     let bullets = [];
     let oxygens = [];
     let score = 0;
-    let speed = 2;
     let gameOver = false;
     let gameWin = false;
     let bgX = 0;
@@ -129,7 +135,6 @@
 
     // === Controls ===
     let keys = { ArrowLeft: false, ArrowRight: false, Shoot: false };
-
     window.addEventListener("keydown", e => {
       if (e.key === "ArrowLeft") keys.ArrowLeft = true;
       if (e.key === "ArrowRight") keys.ArrowRight = true;
@@ -149,19 +154,18 @@
     document.getElementById("shoot").addEventListener("touchstart", () => keys.Shoot = true);
     document.getElementById("shoot").addEventListener("touchend", () => keys.Shoot = false);
 
-    // === Spawn Aliens ===
+    // === Spawn Aliens & Oxygen ===
     function spawnAlien() {
       aliens.push({ x: canvas.width, y: player.y, w: 50, h: 50 });
     }
     setInterval(spawnAlien, 2500);
 
-    // === Spawn Oxygen ===
     function spawnOxygen() {
       oxygens.push({ x: canvas.width, y: player.y, w: 40, h: 40 });
     }
     setInterval(spawnOxygen, 8000);
 
-    // === Shoot Bullets ===
+    // === Shoot ===
     function shoot() {
       bullets.push({ x: player.x + player.w, y: player.y + player.h/2 - 5, w: 10, h: 5 });
       shootSound.currentTime = 0;
@@ -172,44 +176,25 @@
     function update() {
       if (gameOver || gameWin) return;
 
-      // Background parallax - scroll sideways
       bgX -= 1;
       if (bgX <= -canvas.width) bgX = 0;
 
-      // Player movement (side only)
       if (keys.ArrowLeft) player.x -= 5;
       if (keys.ArrowRight) player.x += 5;
-      player.y = 500; // קיבוע גובה
+      player.y = 500;
 
-      // Shoot when active
-      if (keys.Shoot) {
-        if (!keys.shooting) {
-          shoot();
-          keys.shooting = true;
-        }
-      } else {
-        keys.shooting = false;
+      if (keys.Shoot && !keys.shooting) {
+        shoot();
+        keys.shooting = true;
       }
+      if (!keys.Shoot) keys.shooting = false;
 
-      // Keep inside canvas
       player.x = Math.max(0, Math.min(player.x, canvas.width - player.w));
 
-      // Move aliens (לאט יותר)
-      for (let a of aliens) {
-        a.x -= 2;
-      }
+      aliens.forEach(a => a.x -= 2);
+      oxygens.forEach(o => o.x -= 1.5);
+      bullets.forEach(b => b.x += 10);
 
-      // Move oxygen tanks (עוד יותר לאט)
-      for (let o of oxygens) {
-        o.x -= 1.5;
-      }
-
-      // Move bullets
-      for (let b of bullets) {
-        b.x += 10;
-      }
-
-      // Bullet collision with aliens
       bullets.forEach((b, bi) => {
         aliens.forEach((a, ai) => {
           if (b.x < a.x + a.w && b.x + b.w > a.x &&
@@ -221,20 +206,16 @@
         });
       });
 
-      // Alien collision with player
       aliens.forEach((a, ai) => {
         if (a.x < player.x + player.w && a.x + a.w > player.x &&
             a.y < player.y + player.h && a.y + a.h > player.y) {
           aliens.splice(ai, 1);
           player.lives--;
           player.oxygen -= 20;
-          if (player.lives <= 0 || player.oxygen <= 0) {
-            endGame();
-          }
+          if (player.lives <= 0 || player.oxygen <= 0) endGame();
         }
       });
 
-      // Oxygen collision with player
       oxygens.forEach((o, oi) => {
         if (o.x < player.x + player.w && o.x + o.w > player.x &&
             o.y < player.y + player.h && o.y + o.h > player.y) {
@@ -245,64 +226,36 @@
         }
       });
 
-      // Oxygen slowly decreases
       player.oxygen -= 0.02;
-      if (player.oxygen <= 0) {
-        endGame();
-      }
+      if (player.oxygen <= 0) endGame();
 
-      // Update oxygen bar
       oxygenFill.style.width = player.oxygen + "%";
+      scoreUI.textContent = "Score: " + score;
+      lifeUI.textContent = "Life: " + player.lives;
 
-      // Spaceship goal
       if (score >= 100 && !ship) {
         ship = { x: canvas.width, y: player.y - 50, w: 150, h: 150 };
       }
-
       if (ship) {
         ship.x -= 2;
         if (ship.x < player.x + player.w && ship.x + ship.w > player.x &&
-            ship.y < player.y + player.h && ship.y + ship.h > player.y) {
-          winGame();
-        }
+            ship.y < player.y + player.h && ship.y + ship.h > player.y) winGame();
       }
     }
 
     // === Draw ===
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Scrolling background
       ctx.drawImage(bg, bgX, 0, canvas.width, canvas.height);
       ctx.drawImage(bg, bgX + canvas.width, 0, canvas.width, canvas.height);
-
-      // Player
       ctx.drawImage(playerImg, player.x, player.y, player.w, player.h);
-
-      // Aliens
       aliens.forEach(a => ctx.drawImage(alienImg, a.x, a.y, a.w, a.h));
-
-      // Bullets
-      ctx.fillStyle = "yellow";
-      bullets.forEach(b => ctx.fillRect(b.x, b.y, b.w, b.h));
-
-      // Oxygen
+      bullets.forEach(b => {
+        ctx.fillStyle = "yellow";
+        ctx.fillRect(b.x, b.y, b.w, b.h);
+      });
       oxygens.forEach(o => ctx.drawImage(oxygenImg, o.x, o.y, o.w, o.h));
-
-      // Ship
       if (ship) ctx.drawImage(shipImg, ship.x, ship.y, ship.w, ship.h);
-
-      // Score + lives
-      ctx.fillStyle = "white";
-      ctx.font = "20px Arial";
-      ctx.fillText("Score: " + score, 20, 30);
-      ctx.fillText("Lives: " + player.lives, 20, 60);
-
-      if (gameWin) {
-        ctx.fillStyle = "lime";
-        ctx.font = "48px Arial";
-        ctx.fillText("You Escaped! 🚀", canvas.width/2 - 150, canvas.height/2);
-      }
     }
 
     function endGame() {
@@ -336,7 +289,6 @@
       bullets = [];
       oxygens = [];
       score = 0;
-      speed = 2;
       gameOver = false;
       gameWin = false;
       ship = null;
