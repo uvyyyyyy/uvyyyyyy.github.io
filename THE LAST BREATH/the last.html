@@ -105,13 +105,6 @@
     const oxygenFill = document.getElementById("oxygenFill");
     const retryBtn = document.getElementById("retry");
 
-    // === Images ===
-    const bg = new Image(); bg.src = "stars.jpg";
-    const playerImg = new Image(); playerImg.src = "player.png";
-    const alienImg = new Image(); alienImg.src = "alien.png";
-    const oxygenImg = new Image(); oxygenImg.src = "oxygen.png";
-    const shipImg = new Image(); shipImg.src = "ship.png";
-
     // === Sounds ===
     const shootSound = new Audio("shoot.mp3");
     const repairSound = new Audio("repair.mp3");
@@ -120,15 +113,53 @@
     const bgMusic = new Audio("bgmusic.mp3");
     bgMusic.loop = true;
     bgMusic.volume = 0.5;
-    bgMusic.play();
+
+    // === Assets Loading ===
+    let assetsLoaded = 0;
+    let totalAssets = 5; // 5 תמונות
+
+    function checkAllLoaded() {
+      assetsLoaded++;
+      if (assetsLoaded === totalAssets) {
+        console.log("All images loaded!");
+        bgMusic.play();
+        loop(); // מתחילים את המשחק
+      }
+    }
+
+    // === Images ===
+    const bg = new Image(); 
+    bg.src = "stars.jpg";
+    bg.onload = checkAllLoaded;
+    bg.onerror = () => console.error("Error loading stars.jpg");
+
+    const playerImg = new Image(); 
+    playerImg.src = "player.png";
+    playerImg.onload = checkAllLoaded;
+    playerImg.onerror = () => console.error("Error loading player.png");
+
+    const alienImg = new Image(); 
+    alienImg.src = "alien.png";
+    alienImg.onload = checkAllLoaded;
+    alienImg.onerror = () => console.error("Error loading alien.png");
+
+    const oxygenImg = new Image(); 
+    oxygenImg.src = "oxygen.png";
+    oxygenImg.onload = checkAllLoaded;
+    oxygenImg.onerror = () => console.error("Error loading oxygen.png");
+
+    const shipImg = new Image(); 
+    shipImg.src = "ship.png";
+    shipImg.onload = checkAllLoaded;
+    shipImg.onerror = () => console.error("Error loading ship.png");
 
     // === Responsive Resize ===
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      groundY = canvas.height - 100; // רצפה תמיד 100px מעל התחתית
-      scale = canvas.width / 2000;   // סקיילינג יחסי למסך
-      if (scale < 0.3) scale = 0.3;  // שלא יהיה קטן מדי
+      groundY = canvas.height - 100;
+      scale = canvas.width / 2000;
+      if (scale < 0.3) scale = 0.3;
       resetPlayerSize();
     }
     window.addEventListener("resize", resizeCanvas);
@@ -312,7 +343,6 @@
       draw();
       requestAnimationFrame(loop);
     }
-    loop();
 
     retryBtn.addEventListener("click", () => {
       resetPlayerSize();
