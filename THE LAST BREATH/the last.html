@@ -114,7 +114,7 @@
     bgMusic.loop = true;
     bgMusic.volume = 0.5;
 
-    // === Game State Variables (מוגדרים מראש) ===
+    // === Game State Variables ===
     let groundY;
     let scale;
     let player = { x: 100, y: 0, w: 0, h: 0, lives: 3, oxygen: 100 };
@@ -127,6 +127,12 @@
     let bgX = 0;
     let ship = null;
 
+    // === Scale Factors ===
+    const playerScaleFactor = 0.5; // דמות
+    const alienScaleFactor = 0.4;  // חייזרים
+    const oxygenScaleFactor = 0.3; // בלוני חמצן
+    const shipScaleFactor = 0.6;   // חללית
+
     // === Assets Loading ===
     let assetsLoaded = 0;
     let totalAssets = 5;
@@ -136,7 +142,7 @@
       if (assetsLoaded === totalAssets) {
         console.log("All images loaded!");
         bgMusic.play();
-        loop(); // מתחילים רק אחרי שהכול נטען
+        loop();
       }
     }
 
@@ -144,27 +150,22 @@
     const bg = new Image(); 
     bg.src = "stars.jpg";
     bg.onload = checkAllLoaded;
-    bg.onerror = () => console.error("Error loading stars.jpg");
 
     const playerImg = new Image(); 
     playerImg.src = "player.png";
     playerImg.onload = () => { resetPlayerSize(); checkAllLoaded(); };
-    playerImg.onerror = () => console.error("Error loading player.png");
 
     const alienImg = new Image(); 
     alienImg.src = "alien.png";
     alienImg.onload = checkAllLoaded;
-    alienImg.onerror = () => console.error("Error loading alien.png");
 
     const oxygenImg = new Image(); 
     oxygenImg.src = "oxygen.png";
     oxygenImg.onload = checkAllLoaded;
-    oxygenImg.onerror = () => console.error("Error loading oxygen.png");
 
     const shipImg = new Image(); 
     shipImg.src = "ship.png";
     shipImg.onload = checkAllLoaded;
-    shipImg.onerror = () => console.error("Error loading ship.png");
 
     // === Responsive Resize ===
     function resizeCanvas() {
@@ -178,10 +179,11 @@
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
+    // === Reset Player ===
     function resetPlayerSize() {
       if (playerImg.width) {
-        player.w = playerImg.width * scale;
-        player.h = playerImg.height * scale;
+        player.w = playerImg.width * scale * playerScaleFactor;
+        player.h = playerImg.height * scale * playerScaleFactor;
         player.y = groundY - player.h;
       }
     }
@@ -207,17 +209,18 @@
     document.getElementById("shoot").addEventListener("touchstart", () => keys.Shoot = true);
     document.getElementById("shoot").addEventListener("touchend", () => keys.Shoot = false);
 
-    // === Spawn Aliens & Oxygen ===
+    // === Spawn Aliens ===
     function spawnAlien() {
-      let w = alienImg.width * scale;
-      let h = alienImg.height * scale;
+      let w = alienImg.width * scale * alienScaleFactor;
+      let h = alienImg.height * scale * alienScaleFactor;
       aliens.push({ x: canvas.width, y: groundY - h, w, h });
     }
     setInterval(spawnAlien, 2500);
 
+    // === Spawn Oxygen ===
     function spawnOxygen() {
-      let w = oxygenImg.width * scale;
-      let h = oxygenImg.height * scale;
+      let w = oxygenImg.width * scale * oxygenScaleFactor;
+      let h = oxygenImg.height * scale * oxygenScaleFactor;
       oxygens.push({ x: canvas.width, y: groundY - h, w, h });
     }
     setInterval(spawnOxygen, 8000);
@@ -251,6 +254,7 @@
       oxygens.forEach(o => o.x -= 1.5);
       bullets.forEach(b => b.x += 10);
 
+      // Bullet vs Alien
       bullets.forEach((b, bi) => {
         aliens.forEach((a, ai) => {
           if (b.x < a.x + a.w && b.x + b.w > a.x &&
@@ -262,6 +266,7 @@
         });
       });
 
+      // Alien vs Player
       aliens.forEach((a, ai) => {
         if (a.x < player.x + player.w && a.x + a.w > player.x &&
             a.y < player.y + player.h && a.y + a.h > player.y) {
@@ -272,6 +277,7 @@
         }
       });
 
+      // Oxygen vs Player
       oxygens.forEach((o, oi) => {
         if (o.x < player.x + player.w && o.x + o.w > player.x &&
             o.y < player.y + player.h && o.y + o.h > player.y) {
@@ -282,6 +288,7 @@
         }
       });
 
+      // Oxygen decrease
       player.oxygen -= 0.02;
       if (player.oxygen <= 0) endGame();
 
@@ -289,15 +296,16 @@
       scoreUI.textContent = "Score: " + score;
       lifeUI.textContent = "Life: " + player.lives;
 
+      // Spawn ship
       if (score >= 100 && !ship) {
-        let w = shipImg.width * scale;
-        let h = shipImg.height * scale;
+        let w = shipImg.width * scale * shipScaleFactor;
+        let h = shipImg.height * scale * shipScaleFactor;
         ship = { x: canvas.width, y: groundY - h, w, h };
       }
       if (ship) {
         ship.x -= 2;
         if (ship.x < player.x + player.w && ship.x + ship.w > player.x &&
-            ship.y < player.y + player.h && ship.y + player.h > player.y) winGame();
+            ship.y < player.y + player.h && ship.y + ship.h > player.y) winGame();
       }
     }
 
@@ -316,6 +324,7 @@
       if (ship) ctx.drawImage(shipImg, ship.x, ship.y, ship.w, ship.h);
     }
 
+    // === End Game ===
     function endGame() {
       if (!gameOver) {
         gameOver = true;
@@ -325,6 +334,7 @@
       }
     }
 
+    // === Win Game ===
     function winGame() {
       if (!gameWin) {
         gameWin = true;
