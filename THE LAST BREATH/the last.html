@@ -128,10 +128,16 @@
     let ship = null;
 
     // === Scale Factors ===
-    const playerScaleFactor = 0.09; // דמות
-    const alienScaleFactor = 0.09;  // חייזרים
-    const oxygenScaleFactor = 0.3; // בלוני חמצן
-    const shipScaleFactor = 0.6;   // חללית
+    const playerScaleFactor = 0.09;
+    const alienScaleFactor = 0.09;
+    const oxygenScaleFactor = 0.3;
+    const shipScaleFactor = 0.1;
+
+    // === Y Offsets ===
+    const playerYOffset = 10;  // כמה פיקסלים להרים את הדמות
+    const alienYOffset = 12;   // חייזרים
+    const oxygenYOffset = 5;   // בלוני חמצן
+    const shipYOffset = 0;     // חללית
 
     // === Assets Loading ===
     let assetsLoaded = 0;
@@ -184,7 +190,7 @@
       if (playerImg.width) {
         player.w = playerImg.width * scale * playerScaleFactor;
         player.h = playerImg.height * scale * playerScaleFactor;
-        player.y = groundY - player.h;
+        player.y = groundY - player.h - playerYOffset;
       }
     }
 
@@ -213,7 +219,7 @@
     function spawnAlien() {
       let w = alienImg.width * scale * alienScaleFactor;
       let h = alienImg.height * scale * alienScaleFactor;
-      aliens.push({ x: canvas.width, y: groundY - h, w, h });
+      aliens.push({ x: canvas.width, y: groundY - h - alienYOffset, w, h });
     }
     setInterval(spawnAlien, 2500);
 
@@ -221,7 +227,7 @@
     function spawnOxygen() {
       let w = oxygenImg.width * scale * oxygenScaleFactor;
       let h = oxygenImg.height * scale * oxygenScaleFactor;
-      oxygens.push({ x: canvas.width, y: groundY - h, w, h });
+      oxygens.push({ x: canvas.width, y: groundY - h - oxygenYOffset, w, h });
     }
     setInterval(spawnOxygen, 8000);
 
@@ -300,7 +306,7 @@
       if (score >= 100 && !ship) {
         let w = shipImg.width * scale * shipScaleFactor;
         let h = shipImg.height * scale * shipScaleFactor;
-        ship = { x: canvas.width, y: groundY - h, w, h };
+        ship = { x: canvas.width, y: groundY - h - shipYOffset, w, h };
       }
       if (ship) {
         ship.x -= 2;
