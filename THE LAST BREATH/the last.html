@@ -114,16 +114,29 @@
     bgMusic.loop = true;
     bgMusic.volume = 0.5;
 
+    // === Game State Variables (מוגדרים מראש) ===
+    let groundY;
+    let scale;
+    let player = { x: 100, y: 0, w: 0, h: 0, lives: 3, oxygen: 100 };
+    let aliens = [];
+    let bullets = [];
+    let oxygens = [];
+    let score = 0;
+    let gameOver = false;
+    let gameWin = false;
+    let bgX = 0;
+    let ship = null;
+
     // === Assets Loading ===
     let assetsLoaded = 0;
-    let totalAssets = 5; // 5 תמונות
+    let totalAssets = 5;
 
     function checkAllLoaded() {
       assetsLoaded++;
       if (assetsLoaded === totalAssets) {
         console.log("All images loaded!");
         bgMusic.play();
-        loop(); // מתחילים את המשחק
+        loop(); // מתחילים רק אחרי שהכול נטען
       }
     }
 
@@ -135,7 +148,7 @@
 
     const playerImg = new Image(); 
     playerImg.src = "player.png";
-    playerImg.onload = checkAllLoaded;
+    playerImg.onload = () => { resetPlayerSize(); checkAllLoaded(); };
     playerImg.onerror = () => console.error("Error loading player.png");
 
     const alienImg = new Image(); 
@@ -165,21 +178,6 @@
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
-    // === Ground & Scale ===
-    let groundY;
-    let scale;
-
-    // === Game Variables ===
-    let player = { x: 100, y: 0, w: 0, h: 0, lives: 3, oxygen: 100 };
-    let aliens = [];
-    let bullets = [];
-    let oxygens = [];
-    let score = 0;
-    let gameOver = false;
-    let gameWin = false;
-    let bgX = 0;
-    let ship = null;
-
     function resetPlayerSize() {
       if (playerImg.width) {
         player.w = playerImg.width * scale;
@@ -187,8 +185,6 @@
         player.y = groundY - player.h;
       }
     }
-
-    playerImg.onload = resetPlayerSize;
 
     // === Controls ===
     let keys = { ArrowLeft: false, ArrowRight: false, Shoot: false };
@@ -301,7 +297,7 @@
       if (ship) {
         ship.x -= 2;
         if (ship.x < player.x + player.w && ship.x + ship.w > player.x &&
-            ship.y < player.y + player.h && ship.y + ship.h > player.y) winGame();
+            ship.y < player.y + player.h && ship.y + player.h > player.y) winGame();
       }
     }
 
