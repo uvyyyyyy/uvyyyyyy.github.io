@@ -131,13 +131,13 @@
     const playerScaleFactor = 0.09;
     const alienScaleFactor = 0.09;
     const oxygenScaleFactor = 0.3;
-    const shipScaleFactor = 0.5;
+    const shipScaleFactor = 0.3;
 
     // === Y Offsets ===
-    const playerYOffset = 27;  // כמה פיקסלים להרים את הדמות
-    const alienYOffset = 23;   // חייזרים
-    const oxygenYOffset = 9;   // בלוני חמצן
-    const shipYOffset = 3;     // חללית
+    const playerYOffset = 29;
+    const alienYOffset = 25;
+    const oxygenYOffset = 11;
+    const shipYOffset = 4;
 
     // === Assets Loading ===
     let assetsLoaded = 0;
@@ -214,6 +214,14 @@
     document.getElementById("right").addEventListener("touchend", () => keys.ArrowRight = false);
     document.getElementById("shoot").addEventListener("touchstart", () => keys.Shoot = true);
     document.getElementById("shoot").addEventListener("touchend", () => keys.Shoot = false);
+
+    // === Show controls only on mobile ===
+    function isMobile() {
+      return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+    }
+    if (!isMobile()) {
+      document.getElementById("controls").style.display = "none";
+    }
 
     // === Spawn Aliens ===
     function spawnAlien() {
